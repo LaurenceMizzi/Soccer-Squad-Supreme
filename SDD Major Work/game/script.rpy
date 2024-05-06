@@ -3,6 +3,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 # defining the font of the game as well
+# think about font for game
 
 #define gui.font = "fonts/rainyhearts.ttf"
 #define gui.name_text_font = "fonts/rainyhearts.ttf"
