@@ -1,0 +1,26 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 107, in script
+    $ public_perception += 5
+  File "game/script.rpy", line 107, in <module>
+    $ public_perception += 5
+NameError: name 'public_perception' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 107, in script
+    $ public_perception += 5
+  File "C:\Users\Mrspi\OneDrive\Desktop\Sandbox\Major Work\renpy-8.2.1-sdk\renpy\ast.py", line 823, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\Mrspi\OneDrive\Desktop\Sandbox\Major Work\renpy-8.2.1-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 107, in <module>
+    $ public_perception += 5
+NameError: name 'public_perception' is not defined
+
+Windows-10-10.0.22631 AMD64
+Ren'Py 8.2.1.24030407
+SDD Major Work 1.0
+Thu May  2 11:31:07 2024
