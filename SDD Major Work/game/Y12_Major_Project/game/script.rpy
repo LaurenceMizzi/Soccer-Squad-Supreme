@@ -155,7 +155,10 @@ label press_conference_signing_b_finish:
 #menu:
     #"I try to accept responsibility for my own mistakes and work harder to improve."
 
-    #""
+    #"Redirect responsibility to others and offer justifications for subpar outcomes."
+
+    #"Demonstrate frustration through less constructive behavior both on and off the field."
+    
 
 return
 
