@@ -2,18 +2,7 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-# defining the font of the game as well
-# think about font for game
 
-#define gui.font = "fonts/rainyhearts.ttf"
-#define gui.name_text_font = "fonts/rainyhearts.ttf"
-#define gui.interface_text_font = "fonts/rainyhearts.ttf"
-#define gui.dialogue_text_font = "fonts/rainyhearts.ttf"
-#define gui.choice_text_font = "fonts/rainyhearts.ttf"
-#define gui.choice_button_font = "fonts/rainyhearts.ttf"
-#define gui.text_size = 52
-#define gui.name_text_size = 58
-#define gui.interface_text_size = 52
 define Player = Character('Main Player')
 define Derek = Character('Derek Rae', color="#808080")
 define Stewart = Character('Stewart Robson', color="#808080")
@@ -22,6 +11,13 @@ define Newspaper = Character('The Times', color="#FFFFFF")
 define Press1 = Character('Reporter for The Guardians', color="#FF0000")
 define Press2 = Character('Reporter for NBC Sports', color="#FF0000")
 define Press3 = Character('Reporter for The Athletic', color="#FF0000")
+image The_Guardian:
+    "interviewer.png"
+    zoom 0.75
+
+image Press_conference_background:
+    "bg press_room.png"
+    zoom 1.25
 
 # adding variables that are assigned to the character
 # First variable is to set a max just incase it gets to high. e.g if the player keeps making good choices with 
@@ -68,10 +64,13 @@ if ego > max_value:
 # We start with a loss with the team in the starting game of the league
 
 label start:
+    show The_Guardian at left
     Derek "And that is the first game of the season, and what a loss it is for the Haddonfield United."
+    hide The_Guardian
+    show The_Guardian at right
     Stewart "The Final Score is 3 neil for Nott'm Forrest and you just have to wonder... "
     Stewart "Where will the Haddonfield end up if they have consistent scorelines like that?"
-
+    hide The_Guardian
 # You are given a choice of position to play
 
 label character_selection:
@@ -105,7 +104,10 @@ label choices1_common:
 label press_conference_signing_1:
     Narrator "You have been signed to a team that is currently in the papers for their bad result on the weekend."
     Narrator "You will be asked by the press to give a statement on your teams performance and how you will help."
+    scene Press_conference_background
+    show The_Guardian
     Press1 "Are you aware that the team you have signed for are on a tragectary for relegation?"
+    hide The_Guardian
 menu:
     "I am well aware of the controversy that is surrounding this club.":
                                                                     jump press_conference_signing_a1
@@ -113,7 +115,9 @@ menu:
                                                 jump press_conference_signing_a2
 
 label press_conference_signing_a1:
+    show The_Guardian
     Press1 "That in mind, how do you think you will help the club out of this position?"
+    hide The_Guardian
 menu:
     "I have been signed to score goals so that is what I intend to do":
                                                                     jump press_conference_signing_a_finish
@@ -121,8 +125,10 @@ menu:
                                                                                 jump press_conference_signing_a_finish
 
 label press_conference_signing_a2_:
+    show The_Guardian
     Press1 "Seems like you aren't very aware of the team you have signed for."
     Press1 "How do you intend to help from the lackluster performance that occured on the weekend?"
+    hide The_Guardian
 menu:
     "I have been signed to score goals so that is what I intend to do":
                                                                     jump press_conference_signing_a_finish
@@ -130,7 +136,9 @@ menu:
                                                                                 jump press_conference_signing_a_finish
 
 label press_conference_signing_a_finish:
+    show The_Guardian
     Press1 "Thank you for your time"
+    hide The_Guardian
 
 label press_conference_signing_b:
     Press2 "How long do you see yourself being at this team?"
