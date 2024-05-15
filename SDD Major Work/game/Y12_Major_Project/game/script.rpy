@@ -20,6 +20,10 @@ image Press_conference_background:
     "bg press_room.png"
     zoom 1.25 
 
+image The_Gafa:
+    "manager.png"
+    zoom 0.90
+
 # The game starts here.
 # We start with a loss with the team in the starting game of the league
 
@@ -34,7 +38,7 @@ label start:
 # You are given a choice of position to play
 
 label character_selection:
-    Narrator "What position are you gonna play?"
+    Narrator "What position are you going to play?"
     $ position = None
     $ pace = 0
     $ shooting = 0
@@ -89,7 +93,7 @@ label choice1_midfielder:
 
 label choice1_defender:
     Narrator "The Defender"
-    Narrator "A defender in soccer is a player tasked with protecting their team's goal and preventing the opposing team from scoring by intercepting passes, tackling opponents, and providing defensive support to their teammates."
+    Narrator "A defender in football is a player tasked with protecting their team's goal and preventing the opposing team from scoring by intercepting passes, tackling opponents, and providing defensive support to their teammates."
     Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
     jump choices1_common
 
@@ -115,44 +119,45 @@ label press_conference_signing_a1:
     Press1 "That in mind, how do you think you will help the club out of this position?"
     hide The_Guardian
 menu:
-    "I have been signed to score goals so that is what I intend to do":
+    "I have been signed to score goals so that is what I intend to do.":
                                                                     jump press_conference_signing_a_finish
-    "I will try to get open for assists and be available to a pass if necessary":
+    "I will try to get open for assists and be available to a pass if necessary.":
                                                                                 jump press_conference_signing_a_finish
 
 label press_conference_signing_a2:
     show The_Guardian
-    Press1 "Seems like you aren't very aware of the team you have signed for."
+    Press1 "Seems like you aren't very aware of the team you have signed for..."
     Press1 "How do you intend to help from the lackluster performance that occured on the weekend?"
     hide The_Guardian
 menu:
-    "I have been signed to score goals so that is what I intend to do":
+    "I have been signed to score goals so that is what I intend to do.":
                                                                     jump press_conference_signing_a_finish
-    "I will try to get open for assists and be available to a pass if necessary":
+    "I will try to get open for assists and be available to a pass if necessary.":
                                                                                 jump press_conference_signing_a_finish
 
 label press_conference_signing_a_finish:
     show The_Guardian
-    Press1 "Thank you for your time"
+    Press1 "Thank you for your time."
     hide The_Guardian
 
 label press_conference_signing_b:
     Press2 "How long do you see yourself being at this team?"
 menu:
-    "I see myself being here for a long time":
+    "I see myself being here for a long time.":
                                             jump press_conference_signing_b2
-    "I will be here for aslong as the manager needs me":
+    "I will be here for aslong as the manager needs me.":
                                                     jump press_conference_signing_b2
 
 label press_conference_signing_b2:
     Press2 "What are you opinions on the manager at the moment?"
 menu:
-    "From what I have heard, he is a reliable person and I trust that he will put me in the right tragectory":
+    "From what I have heard, he is a reliable person and I trust that he will put me in the right tragectory.":
                                                                                                             jump press_conference_signing_b_finish
-    "From what I have seen of his team performances, I believe that he needs help to keep this team up":
+    "From what I have seen of his team performances, I believe that he needs help to keep this team up.":
                                                                                                         jump press_conference_signing_b_finish
 label press_conference_signing_b_finish:
-    Press2 "Can't wait to see you on the pitch"
+    Press2 "I'm sure he would be interested to hear your comments..."
+    Press2 "Can't wait to see you on the pitch."
 
 label press_conference_signing_c:
     Press3 "How do you handle defeat, particularly when the team's performance is under scrutiny?"
@@ -178,13 +183,23 @@ label press_conference_signing_b_finish_1:
     $ ego = False
 menu:
     "I'm eager to learn and adapt to the challenges of professional competition, aiming to make a significant impact on the team.":
-                                                                                                                                jump press_conference_signing_b_ending
+                                                                                                                                $ inexperience = True      
+                                                                                                                                jump press_conference_signing_ending
     "I've been training relentlessly to prepare for this opportunity and am confident in my abilities to contribute to the team's success.":
-                                                                                                                                jump press_conference_signing_b_ending
+                                                                                                                                    $ cocky = True
+                                                                                                                                    jump press_conference_signing_ending
     "My goal is to become a fan favorite and inspire others to pursue their dreams in this sport.": 
-                                                                                                    jump press_conference_signing_b_ending
-label press_conference_signing_b_ending:
+                                                                                                    $ ego = True
+                                                                                                    jump press_conference_signing_ending
+label press_conference_signing_ending:
     Press3 "Thank you for your time."
+    hide Press_conference_background
+
+label meet_the_manager:
+    Narrator "After that eventful press conference..."
+    Narrator "It's time to meet the gafa."
+    show The_Gafa
+    Manager ""
 
 return
 

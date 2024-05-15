@@ -2,7 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 67: Indentation mismatch.
+File "game/script.rpy", line 194: menu statement expects a non-empty block.
+    menu:
+        ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Wed May 15 11:23:30 2024
+Wed May 15 13:17:37 2024
