@@ -11,8 +11,9 @@ define Newspaper = Character('The Times', color="#FFFFFF")
 define Press1 = Character('Reporter for The Guardians', color="#FF0000")
 define Press2 = Character('Reporter for NBC Sports', color="#FF0000")
 define Press3 = Character('Reporter for The Athletic', color="#FF0000")
+define Manager = Character('The Gafa', color="#808080")
 image The_Guardian:
-    "interviewer.png"
+    "interviewer_1.png"
     zoom 0.75
 
 image Press_conference_background:
@@ -21,8 +22,6 @@ image Press_conference_background:
 
 # adding variables that are assigned to the character
 # First variable is to set a max just incase it gets to high. e.g if the player keeps making good choices with 
-
-$ max_value = 100
 
 $ skill = 50
 if skill > max_value:
@@ -64,23 +63,28 @@ if ego > max_value:
 # We start with a loss with the team in the starting game of the league
 
 label start:
+    $ max_value = 100
     show The_Guardian at left
-    Derek "And that is the first game of the season, and what a loss it is for the Haddonfield United."
+    Derek "And that is the tenth game of the season, and that is 10 losses in a row for Haddonfield United."
     hide The_Guardian
     show The_Guardian at right
     Stewart "The Final Score is 3 neil for Nott'm Forrest and you just have to wonder... "
-    Stewart "Where will the Haddonfield end up if they have consistent scorelines like that?"
+    Stewart "Where will Haddonfield end up if they have consistent scorelines like that?"
     hide The_Guardian
 # You are given a choice of position to play
 
 label character_selection:
     Narrator "What position are you gonna play?"
+    $ position = None
 menu:
     "Striker":
+            $ position = "Striker"
             jump choice1_striker
     "Midfielder":
+            $ position = "Midfielder"
             jump choice1_midfielder
     "Defender":
+            $ position = "Defender"
             jump choice1_defender
 
 label choice1_striker:
@@ -90,11 +94,13 @@ label choice1_striker:
     jump choices1_common
 
 label choice1_midfielder:
-    Narrator "The midfielder"
+    Narrator "The Midfielder"
     Narrator ""
     jump choices1_common
 
 label choice1_defender:
+    Narrator "The Defender"
+    Narrator ""
     jump choices1_common
 
 label choices1_common:
@@ -124,7 +130,7 @@ menu:
     "I will try to get open for assists and be available to a pass if necessary":
                                                                                 jump press_conference_signing_a_finish
 
-label press_conference_signing_a2_:
+label press_conference_signing_a2:
     show The_Guardian
     Press1 "Seems like you aren't very aware of the team you have signed for."
     Press1 "How do you intend to help from the lackluster performance that occured on the weekend?"
@@ -158,15 +164,37 @@ menu:
 label press_conference_signing_b_finish:
     Press2 "Can't wait to see you on the pitch"
 
-#label press_conference_signing_c:
-    #Press3 "How do you handle defeat, particularly when the team's performance is under scrutiny?"
-#menu:
-    #"I try to accept responsibility for my own mistakes and work harder to improve."
+label press_conference_signing_c:
+    Press3 "How do you handle defeat, particularly when the team's performance is under scrutiny?"
+    $ modest = False
+    $ arrogant = False
+    $ egotistical = False
+menu:
+    "I try to accept responsibility for my own mistakes and work harder to improve.":
+                                                                                    $ modest = True
+                                                                                    jump press_conference_signing_b_finish_1
+    "Redirect responsibility to others and offer justifications for subpar outcomes.":
+                                                                                    $ arrogant = True
+                                                                                    jump press_conference_signing_b_finish_1
+    "Demonstrate frustration through less constructive behavior both on and off the field.":
+                                                                                            $ egotistical = True
+                                                                                            jump press_conference_signing_b_finish_1
 
-    #"Redirect responsibility to others and offer justifications for subpar outcomes."
-
-    #"Demonstrate frustration through less constructive behavior both on and off the field."
-    
+label press_conference_signing_b_finish_1:
+    Press3 "Interesting..."
+    Press3 "As a newcomer to the sport, what do you hope to achieve in your rookie season?"
+    $ inexperience = False
+    $ cocky = False
+    $ ego = False
+menu:
+    "I'm eager to learn and adapt to the challenges of professional competition, aiming to make a significant impact on the team.":
+                                                                                                                                jump press_conference_signing_b_ending
+    "I've been training relentlessly to prepare for this opportunity and am confident in my abilities to contribute to the team's success.":
+                                                                                                                                jump press_conference_signing_b_ending
+    "My goal is to become a fan favorite and inspire others to pursue their dreams in this sport.": 
+                                                                                                    jump press_conference_signing_b_ending
+label press_conference_signing_b_ending:
+    Press3 "Thank you for your time."
 
 return
 
