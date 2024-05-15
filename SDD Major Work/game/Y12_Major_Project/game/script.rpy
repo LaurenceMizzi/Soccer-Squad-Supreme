@@ -18,52 +18,12 @@ image The_Guardian:
 
 image Press_conference_background:
     "bg press_room.png"
-    zoom 1.25
-
-# adding variables that are assigned to the character
-# First variable is to set a max just incase it gets to high. e.g if the player keeps making good choices with 
-
-$ skill = 50
-if skill > max_value:
-        $ skill = max_value
-
-$ speed = 50
-if speed > max_value:
-        $ speed = max_value
-
-$ strength = 50
-if strength > max_value:
-        $ strength = max_value
-
-$ endurance = 50
-if endurance > max_value:
-        $ endurance = max_value
-
-$ tactical_awareness = 20
-if tactical_awareness > max_value:
-        $ tactical_awareness = max_value
-
-$ passing = 50
-if passing > max_value:
-        $ passing = max_value
-
-$ public_perception = 50
-if public_perception > max_value:
-        $ public_perception = max_value
-
-$ mental_strength = 50
-if mental_strength > max_value:
-        $ mental_strength = max_value
-
-$ ego = 50
-if ego > max_value:
-        $ ego = max_value
+    zoom 1.25 
 
 # The game starts here.
 # We start with a loss with the team in the starting game of the league
 
 label start:
-    $ max_value = 100
     show The_Guardian at left
     Derek "And that is the tenth game of the season, and that is 10 losses in a row for Haddonfield United."
     hide The_Guardian
