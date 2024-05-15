@@ -36,31 +36,61 @@ label start:
 label character_selection:
     Narrator "What position are you gonna play?"
     $ position = None
+    $ pace = 0
+    $ shooting = 0
+    $ passing = 0
+    $ defending = 0
+    $ dribbling = 0
+    $ physical = 0
+
 menu:
     "Striker":
             $ position = "Striker"
+            $ pace = 75
+            $ shooting = 80
+            $ passing = 40
+            $ defending = 20
+            $ dribbling = 60
+            $ physical = 45
+            # all up stats for striker is 320
             jump choice1_striker
     "Midfielder":
             $ position = "Midfielder"
+            $ pace = 55
+            $ shooting = 50
+            $ passing = 75
+            $ defending = 40
+            $ dribbling = 50
+            $ physical = 50
+            # all up stats for midfielder is 320
             jump choice1_midfielder
     "Defender":
             $ position = "Defender"
+            $ pace = 45
+            $ shooting = 30
+            $ passing = 45
+            $ defending = 80
+            $ dribbling = 40
+            $ physical = 80
+            # all up stats for defender is 320
             jump choice1_defender
 
 label choice1_striker:
     Narrator "The Striker"
-    Narrator "You will be asked to be in open situations. Available for a pass in to goal."
+    Narrator "A striker in football is a forward player primarily tasked with scoring goals for their team by taking shots on the opposing team's goal."
     Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
     jump choices1_common
 
 label choice1_midfielder:
     Narrator "The Midfielder"
-    Narrator ""
+    Narrator "A midfielder in football is a player positioned between the defenders and forwards, responsible for both defensive duties and initiating attacking plays."
+    Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
     jump choices1_common
 
 label choice1_defender:
     Narrator "The Defender"
-    Narrator ""
+    Narrator "A defender in soccer is a player tasked with protecting their team's goal and preventing the opposing team from scoring by intercepting passes, tackling opponents, and providing defensive support to their teammates."
+    Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
     jump choices1_common
 
 label choices1_common:
