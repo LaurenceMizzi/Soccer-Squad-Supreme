@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 194: menu statement expects a non-empty block.
-    menu:
-        ^
+File "game/script.rpy", line 220: expected statement.
+    Show Narrator at left
+                  ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Wed May 15 13:17:37 2024
+Thu May 16 11:49:57 2024

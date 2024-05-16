@@ -6,13 +6,22 @@
 define Player = Character('Main Player')
 define Derek = Character('Derek Rae', color="#808080")
 define Stewart = Character('Stewart Robson', color="#808080")
-define Narrator = Character('Narrator', color="#008000")
+define Narrator = Character('The Narrator', color="#008000")
 define Newspaper = Character('The Times', color="#FFFFFF")
 define Press1 = Character('Reporter for The Guardians', color="#FF0000")
 define Press2 = Character('Reporter for NBC Sports', color="#FF0000")
 define Press3 = Character('Reporter for The Athletic', color="#FF0000")
 define Manager = Character('The Gafa', color="#808080")
-image The_Guardian:
+
+image Neutral_Background:
+    "bg neutral.png"
+    zoom 1.45
+
+image Narrator:
+    "narrator.png"
+    zoom 0.85
+
+image The_Athletic:
     "interviewer_1.png"
     zoom 0.75
 
@@ -24,21 +33,27 @@ image The_Gafa:
     "manager.png"
     zoom 0.90
 
+image Gafa_Room:
+    "bg gafa_room.png"
+    zoom 1.45
 # The game starts here.
-# We start with a loss with the team in the starting game of the league
+# We start with a 10th loss with the team in the starting game of the playthrough
 
 label start:
-    show The_Guardian at left
+    scene Neutral_Background
+    show The_Athletic at left
     Derek "And that is the tenth game of the season, and that is 10 losses in a row for Haddonfield United."
-    hide The_Guardian
-    show The_Guardian at right
+    hide The_Athletic
+    show The_Athletic at right
     Stewart "The Final Score is 3 neil for Nott'm Forrest and you just have to wonder... "
     Stewart "Where will Haddonfield end up if they have consistent scorelines like that?"
-    hide The_Guardian
+    hide The_Athletic
 # You are given a choice of position to play
-
+# This choice also comes with a base value of 0 with all stats
 label character_selection:
+    show Narrator at left
     Narrator "What position are you going to play?"
+    hide Narrator 
     $ position = None
     $ pace = 0
     $ shooting = 0
@@ -80,34 +95,40 @@ menu:
             jump choice1_defender
 
 label choice1_striker:
+    show Narrator at left
     Narrator "The Striker"
     Narrator "A striker in football is a forward player primarily tasked with scoring goals for their team by taking shots on the opposing team's goal."
     Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
+    hide Narrator
     jump choices1_common
 
 label choice1_midfielder:
+    show Narrator at left
     Narrator "The Midfielder"
     Narrator "A midfielder in football is a player positioned between the defenders and forwards, responsible for both defensive duties and initiating attacking plays."
     Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
+    hide Narrator
     jump choices1_common
 
 label choice1_defender:
+    show Narrator at left
     Narrator "The Defender"
     Narrator "A defender in football is a player tasked with protecting their team's goal and preventing the opposing team from scoring by intercepting passes, tackling opponents, and providing defensive support to their teammates."
     Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
     jump choices1_common
-
+    hide Narrator
 label choices1_common:
     Newspaper "New Signing At Haddonfield United!"
     Newspaper "Will this player be a catalyst in a team that needs it most?"
 
 label press_conference_signing_1:
+    show Narrator at left
     Narrator "You have been signed to a team that is currently in the papers for their bad result on the weekend."
     Narrator "You will be asked by the press to give a statement on your teams performance and how you will help."
+    hide Narrator
+    hide Neutral_Background
     scene Press_conference_background
-    show The_Guardian
     Press1 "Are you aware that the team you have signed for are on a tragectary for relegation?"
-    hide The_Guardian
 menu:
     "I am well aware of the controversy that is surrounding this club.":
                                                                     jump press_conference_signing_a1
@@ -115,9 +136,7 @@ menu:
                                                 jump press_conference_signing_a2
 
 label press_conference_signing_a1:
-    show The_Guardian
     Press1 "That in mind, how do you think you will help the club out of this position?"
-    hide The_Guardian
 menu:
     "I have been signed to score goals so that is what I intend to do.":
                                                                     jump press_conference_signing_a_finish
@@ -125,10 +144,8 @@ menu:
                                                                                 jump press_conference_signing_a_finish
 
 label press_conference_signing_a2:
-    show The_Guardian
     Press1 "Seems like you aren't very aware of the team you have signed for..."
     Press1 "How do you intend to help from the lackluster performance that occured on the weekend?"
-    hide The_Guardian
 menu:
     "I have been signed to score goals so that is what I intend to do.":
                                                                     jump press_conference_signing_a_finish
@@ -136,9 +153,7 @@ menu:
                                                                                 jump press_conference_signing_a_finish
 
 label press_conference_signing_a_finish:
-    show The_Guardian
     Press1 "Thank you for your time."
-    hide The_Guardian
 
 label press_conference_signing_b:
     Press2 "How long do you see yourself being at this team?"
@@ -160,10 +175,12 @@ label press_conference_signing_b_finish:
     Press2 "Can't wait to see you on the pitch."
 
 label press_conference_signing_c:
+    show The_Athletic
     Press3 "How do you handle defeat, particularly when the team's performance is under scrutiny?"
     $ modest = False
     $ arrogant = False
     $ egotistical = False
+    hide The_Athletic
 menu:
     "I try to accept responsibility for my own mistakes and work harder to improve.":
                                                                                     $ modest = True
@@ -176,11 +193,13 @@ menu:
                                                                                             jump press_conference_signing_b_finish_1
 
 label press_conference_signing_b_finish_1:
+    show The_Athletic
     Press3 "Interesting..."
     Press3 "As a newcomer to the sport, what do you hope to achieve in your rookie season?"
     $ inexperience = False
     $ cocky = False
     $ ego = False
+    hide The_Athletic
 menu:
     "I'm eager to learn and adapt to the challenges of professional competition, aiming to make a significant impact on the team.":
                                                                                                                                 $ inexperience = True      
@@ -192,14 +211,21 @@ menu:
                                                                                                     $ ego = True
                                                                                                     jump press_conference_signing_ending
 label press_conference_signing_ending:
+    show The_Athletic
     Press3 "Thank you for your time."
-    hide Press_conference_background
-
+    hide The_Athletic
 label meet_the_manager:
+    show Narrator at left
     Narrator "After that eventful press conference..."
     Narrator "It's time to meet the gafa."
+    hide Press_conference_background
+    scene Gafa_Room
     show The_Gafa
-    Manager ""
+    Manager "How was the press conference?"
+#menu:
+    #"It went a lot better than I expected"
+                                        
+    #"Some of those questions were pretty hardcore"
 
 return
 
