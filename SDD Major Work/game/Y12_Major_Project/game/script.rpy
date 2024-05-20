@@ -12,10 +12,15 @@ define Press1 = Character('Reporter for The Guardians', color="#FF0000")
 define Press2 = Character('Reporter for NBC Sports', color="#FF0000")
 define Press3 = Character('Reporter for The Athletic', color="#FF0000")
 define Manager = Character('The Gafa', color="#808080")
+define Captain = Character('The Captain', color="#00008B")
 
 image Neutral_Background:
     "bg neutral.png"
     zoom 1.45
+
+image Captain_Sprite:
+    "the_captain.png"
+    zoom 0.80
 
 image Narrator:
     "narrator.png"
@@ -61,6 +66,8 @@ label character_selection:
     $ defending = 0
     $ dribbling = 0
     $ physical = 0
+
+# From the choices they will all equal a base of 320 as to not have a class that is better.
 
 menu:
     "Striker":
@@ -220,12 +227,41 @@ label meet_the_manager:
     Narrator "It's time to meet the gafa."
     hide Press_conference_background
     scene Gafa_Room
-    show The_Gafa
+    show The_Gafa at left
     Manager "How was the press conference?"
-#menu:
-    #"It went a lot better than I expected"
-                                        
-    #"Some of those questions were pretty hardcore"
+    hide The_Gafa
+menu: 
+    "It went a lot better than I expected":
+                                            jump meet_the_manager_a
+    "Some of those questions were pretty hardcore":
+                                                    jump meet_the_manager_b
 
+label meet_the_manager_a:
+    show The_Gafa at left
+    Manager "That's good to hear."
+    Manager "I hope you can bring some good results to the team."
+    jump meet_the_manager_finish
+
+label meet_the_manager_b:
+    show The_Gafa at left
+    Manager "I'm sorry to hear that."
+    Manager "Just remember that the press are always looking for a story."
+    jump meet_the_manager_finish
+
+label meet_the_manager_finish:
+    Manager "Now it's time to meet the captain."
+    hide Gafa_Room
+    hide The_Gafa
+    jump meet_the_captain
+
+label meet_the_captain:
+    scene Neutral_Background
+    show Captain_Sprite at left
+    show The_Gafa at right
+    Manager "This is your captain..."
+    Manager "If you have any questions about the team..."
+    Manager "Ask him"
+    hide The_Gafa
+    Captain ""
 return
 
