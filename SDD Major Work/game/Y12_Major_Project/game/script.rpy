@@ -67,7 +67,7 @@ label character_selection:
     $ dribbling = 0
     $ physical = 0
 
-# From the choices they will all equal a base of 320 as to not have a class that is better.
+# From the choices they will all equal a base of 320 stats as to not have a class that is better.
 
 menu:
     "Striker":
@@ -101,6 +101,8 @@ menu:
             # all up stats for defender is 320
             jump choice1_defender
 
+# From the choice of position there will be a brief summary of the position to give to the user some context.
+
 label choice1_striker:
     show Narrator at left
     Narrator "The Striker"
@@ -124,17 +126,22 @@ label choice1_defender:
     Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
     jump choices1_common
     hide Narrator
+
+# Little newspaper snippet to show the player has been signed to the team
+
 label choices1_common:
     Newspaper "New Signing At Haddonfield United!"
     Newspaper "Will this player be a catalyst in a team that needs it most?"
+
+# The player is introduce to the press conference where they will be asked questions about their signing to the team
 
 label press_conference_signing_1:
     show Narrator at left
     Narrator "You have been signed to a team that is currently in the papers for their bad result on the weekend."
     Narrator "You will be asked by the press to give a statement on your teams performance and how you will help."
     hide Narrator
-    hide Neutral_Background
     scene Press_conference_background
+    with dissolve
     Press1 "Are you aware that the team you have signed for are on a tragectary for relegation?"
 menu:
     "I am well aware of the controversy that is surrounding this club.":
@@ -181,6 +188,9 @@ label press_conference_signing_b_finish:
     Press2 "I'm sure he would be interested to hear your comments..."
     Press2 "Can't wait to see you on the pitch."
 
+# This is the first time the player will be asked about their personality and how they handle defeat
+# No matter what choice you make in this scene there will always be a negative outcome
+
 label press_conference_signing_c:
     show The_Athletic
     Press3 "How do you handle defeat, particularly when the team's performance is under scrutiny?"
@@ -221,12 +231,15 @@ label press_conference_signing_ending:
     show The_Athletic
     Press3 "Thank you for your time."
     hide The_Athletic
+
+# The player is then introduced to the manager
+
 label meet_the_manager:
     show Narrator at left
     Narrator "After that eventful press conference..."
     Narrator "It's time to meet the gafa."
-    hide Press_conference_background
     scene Gafa_Room
+    with dissolve
     show The_Gafa at left
     Manager "How was the press conference?"
     hide The_Gafa
@@ -250,12 +263,14 @@ label meet_the_manager_b:
 
 label meet_the_manager_finish:
     Manager "Now it's time to meet the captain."
-    hide Gafa_Room
     hide The_Gafa
     jump meet_the_captain
 
+# The player is then introduced to the captain of the team
+
 label meet_the_captain:
     scene Neutral_Background
+    with dissolve
     show Captain_Sprite at left
     show The_Gafa at right
     Manager "This is your captain..."
