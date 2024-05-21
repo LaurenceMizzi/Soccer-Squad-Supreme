@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 220: expected statement.
-    Show Narrator at left
-                  ^
+File "game/script.rpy", line 333: expected statement.
+    continue_meet_the_captain_underestimate
+                                           ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Thu May 16 11:49:57 2024
+Tue May 21 10:17:01 2024

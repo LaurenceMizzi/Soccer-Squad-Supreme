@@ -14,6 +14,14 @@ define Press3 = Character('Reporter for The Athletic', color="#FF0000")
 define Manager = Character('The Gafa', color="#808080")
 define Captain = Character('The Captain', color="#00008B")
 
+image Locker_Room:
+    "bg locker_room.png"
+    zoom 1.45
+
+image Breaking_News_Background:
+    "bg breaking_news.png"
+    zoom 1.45
+
 image Neutral_Background:
     "bg neutral.png"
     zoom 1.45
@@ -130,12 +138,15 @@ label choice1_defender:
 # Little newspaper snippet to show the player has been signed to the team
 
 label choices1_common:
+    show Breaking_News_Background
+    with dissolve
     Newspaper "New Signing At Haddonfield United!"
     Newspaper "Will this player be a catalyst in a team that needs it most?"
 
 # The player is introduce to the press conference where they will be asked questions about their signing to the team
 
 label press_conference_signing_1:
+    $ press_perception = 50
     show Narrator at left
     Narrator "You have been signed to a team that is currently in the papers for their bad result on the weekend."
     Narrator "You will be asked by the press to give a statement on your teams performance and how you will help."
@@ -145,8 +156,10 @@ label press_conference_signing_1:
     Press1 "Are you aware that the team you have signed for are on a tragectary for relegation?"
 menu:
     "I am well aware of the controversy that is surrounding this club.":
+                                                                    $ press_perception += 5
                                                                     jump press_conference_signing_a1
     "I have not been informed of this but now I am.":
+                                                $ press_perception -= 5
                                                 jump press_conference_signing_a2
 
 label press_conference_signing_a1:
@@ -173,6 +186,7 @@ label press_conference_signing_b:
     Press2 "How long do you see yourself being at this team?"
 menu:
     "I see myself being here for a long time.":
+                                            $ press_perception += 5
                                             jump press_conference_signing_b2
     "I will be here for aslong as the manager needs me.":
                                                     jump press_conference_signing_b2
@@ -181,8 +195,10 @@ label press_conference_signing_b2:
     Press2 "What are you opinions on the manager at the moment?"
 menu:
     "From what I have heard, he is a reliable person and I trust that he will put me in the right tragectory.":
+                                                                                                            $ press_perception -= 5
                                                                                                             jump press_conference_signing_b_finish
     "From what I have seen of his team performances, I believe that he needs help to keep this team up.":
+                                                                                                        $ press_perception += 5
                                                                                                         jump press_conference_signing_b_finish
 label press_conference_signing_b_finish:
     Press2 "I'm sure he would be interested to hear your comments..."
@@ -200,12 +216,15 @@ label press_conference_signing_c:
     hide The_Athletic
 menu:
     "I try to accept responsibility for my own mistakes and work harder to improve.":
+                                                                                    $ press_perception += 5
                                                                                     $ modest = True
                                                                                     jump press_conference_signing_b_finish_1
     "Redirect responsibility to others and offer justifications for subpar outcomes.":
+                                                                                    $ press_perception -= 5
                                                                                     $ arrogant = True
                                                                                     jump press_conference_signing_b_finish_1
     "Demonstrate frustration through less constructive behavior both on and off the field.":
+                                                                                            $ press_perception -= 10
                                                                                             $ egotistical = True
                                                                                             jump press_conference_signing_b_finish_1
 
@@ -277,6 +296,64 @@ label meet_the_captain:
     Manager "If you have any questions about the team..."
     Manager "Ask him"
     hide The_Gafa
+    Captain "See ya gafa"
+    Captain "Hey, can we talk for a minute?"
+    scene Locker_Room
+    with dissolve
+    show Captain_Sprite at left
+    Captain "Look, I am going to be straight with you..."
+    Captain "I was not thrilled when I heard we were signing you."
+    Captain "This team has been building something special, and I am not convinced you are what we need right now."
+    Captain "We have got a tight-knit group here."
+    Captain "We know each of our strengths,"
+    Captain "weaknesses,"
+    Captain "and how to cover for each other."
+    Captain "You coming in throws a wrench into that dynamic."
+    hide Captain_Sprite
+menu:
+    "I understand. I just want to contribute and prove myself.":
+                                                            jump continue_meet_the_captain
+                                                            
+label continue_meet_the_captain:
+    show Captain_Sprite at left
+    Captain "*nods*"
+    Captain "That is all well and good, but words do not mean much on the pitch."
+    Captain "Around here, respect is earned through hard work and dedication, not just showing up with a big contract."
+    Captain "You need to put in the effort, every single day,"
+    Captain "and prove that you are not just here for yourself but for the team."
+    hide Captain_Sprite
+menu:
+    "I will. I will not let you down.":
+                                    jump continue_meet_the_captain_will
+    "What do you need from me?":
+                            jump continue_meet_the_captain_need
+    "I understand your concerns, but I am here to make a difference.":
+                                                                    jump continue_meet_the_captain_understand
+    "I think you are underestimating me.":
+                                        jump continue_meet_the_captain_underestimate
+
+label continue_meet_the_captain_will:
+    show Captain_Sprite at left
+    Captain "We will see."
+    Captain "Actions speak louder than words."
+    Captain "Show me on the field."
+    Captain "Until then..."
+    Captain "do not expect any favors or special treatment."
+    Captain "You are just another player until you prove otherwise."
+
+label continue_meet_the_captain_need:
+    show Captain_Sprite at left
     Captain ""
+
+label continue_meet_the_captain_understand:
+    show Captain_Sprite at left
+    Captain ""
+
+label continue_meet_the_captain_underestimate:
+    show Captain_Sprite at left
+    Captain ""
+
+
+
 return
 
