@@ -340,20 +340,24 @@ label continue_meet_the_captain_will:
     Captain "Until then..."
     Captain "do not expect any favors or special treatment."
     Captain "You are just another player until you prove otherwise."
-
+                                                               
 label continue_meet_the_captain_need:
     show Captain_Sprite at left
     Captain ""
-
+                                
 label continue_meet_the_captain_understand:
     show Captain_Sprite at left
     Captain ""
-
+        
 label continue_meet_the_captain_underestimate:
     show Captain_Sprite at left
     Captain ""
-
-
+#Label finish_meet_the_captain:
+    #show Captain_Sprite at left
+    #Captain "So, here is the deal..."
+    #Captain "you have got a lot to prove."
+    #Captain "Show up, put in the work, and earn your place."
+    #Captain ""
 
 return
 
