@@ -428,13 +428,12 @@ label finish_meet_the_captain_1:
 label end_first_day:
     hide Captain_Sprite
     hide Locker_Room
-    with fade
     scene Breaking_News_Background
     with fade
 
-label end_first_day_news_:
-    if $ modest = True
-    Press3 "New signing "
+#label end_first_day_news_:
+    #if $ modest = True:
+    #Press3 "New signing "
 
 
 

@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 319: end of line expected.
-    label continue_meet_the_captain:Loc
-                                    ^
+File "game/script.rpy", line 436: if statement expects a non-empty block.
+    if $ modest = True:
+                       ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Thu May 23 12:37:57 2024
+Thu May 23 12:58:52 2024
