@@ -2,25 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 343: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    jump finish_meet_the_captain
-    ^
-
-File "game/script.rpy", line 347: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    jump finish_meet_the_captain
-    ^
-
-File "game/script.rpy", line 351: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    jump finish_meet_the_captain
-    ^
-
-File "game/script.rpy", line 355: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    jump finish_meet_the_captain
-    ^
-
-File "game/script.rpy", line 356: expected statement.
-    Label finish_meet_the_captain:
-                                 ^
+File "game/script.rpy", line 319: end of line expected.
+    label continue_meet_the_captain:Loc
+                                    ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Tue May 21 12:36:23 2024
+Thu May 23 12:37:57 2024

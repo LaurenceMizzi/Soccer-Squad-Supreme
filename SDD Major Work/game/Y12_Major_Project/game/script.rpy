@@ -8,9 +8,9 @@ define Derek = Character('Derek Rae', color="#808080")
 define Stewart = Character('Stewart Robson', color="#808080")
 define Narrator = Character('The Narrator', color="#008000")
 define Newspaper = Character('The Times', color="#FFFFFF")
-define Press1 = Character('Reporter for The Guardians', color="#FF0000")
-define Press2 = Character('Reporter for NBC Sports', color="#FF0000")
-define Press3 = Character('Reporter for The Athletic', color="#FF0000")
+define Press1 = Character('The Guardians', color="#FF0000")
+define Press2 = Character('NBC Sports', color="#FF0000")
+define Press3 = Character('The Athletic', color="#FF0000")
 define Manager = Character('The Gafa', color="#808080")
 define Captain = Character('The Captain', color="#00008B")
 
@@ -288,6 +288,7 @@ label meet_the_manager_finish:
 # The player is then introduced to the captain of the team
 
 label meet_the_captain:
+    $ captain_impression = 25
     scene Neutral_Background
     with dissolve
     show Captain_Sprite at left
@@ -312,6 +313,7 @@ label meet_the_captain:
     hide Captain_Sprite
 menu:
     "I understand. I just want to contribute and prove myself.":
+                                                            $ captain_impression += 5
                                                             jump continue_meet_the_captain
                                                             
 label continue_meet_the_captain:
@@ -324,12 +326,16 @@ label continue_meet_the_captain:
     hide Captain_Sprite
 menu:
     "I will. I will not let you down.":
+                                    $ captain_impression += 10
                                     jump continue_meet_the_captain_will
     "What do you need from me?":
+                            $ captain_impression += 5
                             jump continue_meet_the_captain_need
     "I understand your concerns, but I am here to make a difference.":
+                                                                    $ captain_impression += 0
                                                                     jump continue_meet_the_captain_understand
     "I think you are underestimating me.":
+                                        $ captain_impression -= 5 
                                         jump continue_meet_the_captain_underestimate
 
 label continue_meet_the_captain_will:
@@ -340,24 +346,99 @@ label continue_meet_the_captain_will:
     Captain "Until then..."
     Captain "do not expect any favors or special treatment."
     Captain "You are just another player until you prove otherwise."
+    jump finish_meet_the_captain
                                                                
 label continue_meet_the_captain_need:
     show Captain_Sprite at left
-    Captain ""
-                                
+    Captain "Commitment."
+    Captain "Consistency."
+    Captain "A willingness to listen and learn."
+    Captain "This is not about you fitting into our system;"
+    Captain "it is about becoming a part of our family."
+    Captain "You need to show everyone here that you are willing to put the team first."
+    hide Captain_Sprite
+menu:
+    "Understood. I am ready to do whatever it takes.":
+                                                    $ captain_impression += 5
+                                                    jump continue_meet_the_captain_need_1
+
+label continue_meet_the_captain_need_1:
+    show Captain_Sprite at left
+    Captain "That is a start."
+    Captain "Keep that attitude,"
+    Captain "and you might just earn a place here."
+    Captain "It is up to you now."
+    jump finish_meet_the_captain
+
 label continue_meet_the_captain_understand:
     show Captain_Sprite at left
-    Captain ""
-        
+    Captain "Making a difference is not about making headlines."
+    Captain "It is about the little things..."
+    Captain "tracking back,"
+    Captain "making the right pass,"
+    Captain "supporting your teammates."
+    Captain "Show me that you can do that,"
+    Captain "and meybe we will see eye to eye."
+    hide Captain_Sprite
+menu:
+    "I can do that. Just watch.":
+                                $ captain_impression += 5
+                                jump continue_meet_the_captain_understand_1
+
+label continue_meet_the_captain_understand_1:
+    show Captain_Sprite at left
+    Captain "Alright."
+    Captain "You have confidence,"
+    Captain "I will give you that."
+    Captain "But confidence alone will not cut it."
+    Captain "Back it up with hard work, and we'll see."
+    jump finish_meet_the_captain    
+
 label continue_meet_the_captain_underestimate:
     show Captain_Sprite at left
-    Captain ""
-#Label finish_meet_the_captain:
-    #show Captain_Sprite at left
-    #Captain "So, here is the deal..."
-    #Captain "you have got a lot to prove."
-    #Captain "Show up, put in the work, and earn your place."
-    #Captain ""
+    Captain "Underestimating you?"
+    Captain "This is not about what I think of you;"
+    Captain "it is about what you bring to the team."
+    Captain "Drop the attitude and focus on proving yourself."
+    Captain "If you ca not do that, you will not last long here."
+    jump finish_meet_the_captain
+
+label finish_meet_the_captain:
+    Captain "So, here is the deal..."
+    Captain "you have got a lot to prove."
+    Captain "Show up, put in the work, and earn your place."
+    Captain "Because right now,"
+    Captain "you are just another name on the roster."
+    Captain "Got it?"
+    hide Captain_Sprite
+menu:
+    "Got it":
+            $ captain_impression += 5
+            jump finish_meet_the_captain_1
+
+label finish_meet_the_captain_1:
+    show Captain_Sprite at left
+    Captain "Good."
+    Captain "I will see you tomorrow."
+    jump end_first_day
+
+# Depending on the choice of last answers to questions on press conference there will be a news report on response.
+# Links back from line 210-248
+
+label end_first_day:
+    hide Captain_Sprite
+    hide Locker_Room
+    with fade
+    scene Breaking_News_Background
+    with fade
+
+label end_first_day_news_:
+    if $ modest = True
+    Press3 "New signing "
+
+
+
+
 
 return
 
