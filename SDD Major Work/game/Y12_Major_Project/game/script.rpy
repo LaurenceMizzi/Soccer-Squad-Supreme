@@ -13,6 +13,9 @@ define Press2 = Character('NBC Sports', color="#FF0000")
 define Press3 = Character('The Athletic', color="#FF0000")
 define Manager = Character('The Gafa', color="#808080")
 define Captain = Character('The Captain', color="#00008B")
+define Creator = Character('The Creator', color="#A020F0")
+
+# Declare images used by this game. The zoom argument scales the image.
 
 image Locker_Room:
     "bg locker_room.png"
@@ -49,6 +52,7 @@ image The_Gafa:
 image Gafa_Room:
     "bg gafa_room.png"
     zoom 1.45
+
 # The game starts here.
 # We start with a 10th loss with the team in the starting game of the playthrough
 
@@ -61,8 +65,11 @@ label start:
     Stewart "The Final Score is 3 neil for Nott'm Forrest and you just have to wonder... "
     Stewart "Where will Haddonfield end up if they have consistent scorelines like that?"
     hide The_Athletic
+
 # You are given a choice of position to play
 # This choice also comes with a base value of 0 with all stats
+# This is to ensure that the player does not have an advantage over the other classes
+
 label character_selection:
     show Narrator at left
     Narrator "What position are you going to play?"
@@ -286,6 +293,7 @@ label meet_the_manager_finish:
     jump meet_the_captain
 
 # The player is then introduced to the captain of the team
+# The captain will give the player a brief on what is expected of them
 
 label meet_the_captain:
     $ captain_impression = 25
@@ -315,6 +323,9 @@ menu:
     "I understand. I just want to contribute and prove myself.":
                                                             $ captain_impression += 5
                                                             jump continue_meet_the_captain
+
+# The player is then given a choice of what they want to say to the captain
+# Depending on the choice the captain will have a different response
                                                             
 label continue_meet_the_captain:
     show Captain_Sprite at left
@@ -403,6 +414,8 @@ label continue_meet_the_captain_underestimate:
     Captain "If you ca not do that, you will not last long here."
     jump finish_meet_the_captain
 
+# The player is then given a brief on what is expected of them
+
 label finish_meet_the_captain:
     Captain "So, here is the deal..."
     Captain "you have got a lot to prove."
@@ -427,17 +440,80 @@ label finish_meet_the_captain_1:
 
 label end_first_day:
     hide Captain_Sprite
-    hide Locker_Room
     scene Breaking_News_Background
     with fade
+    jump end_first_day_news_modest
 
-#label end_first_day_news_:
-    #if $ modest = True:
-    #Press3 "New signing "
+# From choices that were made in the press conference the player will be given a news report on their response
+# most of the time the player will be given a negative response
+
+label end_first_day_news_modest:
+    if modest == True:
+        Press3 "Player admitted to recurring errors and the need for continual improvement,"
+        Press3 "raising questions about his reliability and consistency on the field."
+        Press3 "Critics argue that his statement highlights a troubling pattern of underperformance and a lack of accountability."
+        jump end_first_day_news_inexperience
+    if modest == False:
+        jump end_first_day_news_arrogant
+
+
+label end_first_day_news_arrogant:
+    if arrogant == True:
+        Press3 "In new signing's interview,"
+        Press3 "when asked about the possibility of poor team performance,"
+        Press3 "player seems to try to deflect blame onto his teammates and external factors."
+        Press3 "'Redirect responsibility to others and offer justifications for subpar outcomes,' He said."
+        Press3 "Critics are calling out this player for his apparent unwillingness to take accountability for the team's struggles,"
+        Press3 "suggesting that this attitude might be contributing to the ongoing issues within the squad."
+        jump end_first_day_news_inexperience
+    if arrogant == False:
+        jump end_first_day_news_egotistical
+
+label end_first_day_news_egotistical:
+    if egotistical == True:
+        Press3 "Player has openly admitted to expressing frustration through unproductive behavior both on and off the field."
+        Press3 "In a recent interview,"
+        Press3 "he acknowledged, 'I demonstrate my frustration through less constructive behavior both on and off the field.'"
+        Press3 "This admission raises concerns about his professionalism and commitment to maintaining a positive team environment."
+        jump end_first_day_news_inexperience
+
+label end_first_day_news_inexperience:
+    if inexperience == True:
+        Press3 "Additionally, in a recent interview, the player seemed more focused on personal ambitions rather than team success, saying,"
+        Press3 "'I'm eager to learn and adapt to the challenges of professional competition, aiming to make a significant impact on the team.'"
+        Press3 "Critics argue that this statement reveals a self-centered attitude, "
+        Press3 "with the player prioritizing their own development over the collective goals of the team."
+    if inexperience == False:
+        jump end_first_day_news_cocky
+
+label end_first_day_news_cocky:
+    if cocky == True:
+        Press3 "Additionally, despite the confidence assertions from the player,"
+        Press3 "some critics argue that talk is cheap without the results to back it up."
+        Press3 "With speculation swirling around whether their performance will match their contract,"
+        Press3 "all eyes will be on the player as they take the field."
+        Press3 "Will their training translate into tangible success, or will it fall short of expectations?"
+    if cocky == False:
+        jump end_first_day_news_ego
+
+label end_first_day_news_ego:
+    if ego == True:
+        Press3 "In a recent interview, the player claimed their goal is 'to become a fan favorite,'"
+        Press3 "revealing a focus on personal popularity rather than team success."
+        Press3 "Critics argue that this self-centered attitude could undermine team morale"
+        Press3 "and detract from the collective effort needed to achieve victory."
+        jump end_first_day_news_end
+
+label end_first_day_news_end:
+    Press3 "Only time will tell if this player’s ambition will lead to team glory or personal gain."
+    Press3 "For now, fans and analysts alike will be watching closely."
+    Press3 "This is Laurence Mizzi with the Athletic, signing off. Stay tuned for more updates."
+
+label second_day:
 
 
 
-
+label cheater:
+    Creator "You're not supposed to be here."
 
 return
-

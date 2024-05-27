@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 436: if statement expects a non-empty block.
-    if $ modest = True:
-                       ^
+File "game/script.rpy", line 468: reached end of line when expecting ':'.
+    if 
+       ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Thu May 23 12:58:52 2024
+Fri May 24 16:43:13 2024
