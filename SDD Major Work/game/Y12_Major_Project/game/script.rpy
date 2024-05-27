@@ -1,5 +1,7 @@
 ﻿# The script of the game goes in this file.
 
+# ChatGPT Code For Images Name "Artisitic Visionary"
+
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
@@ -14,6 +16,7 @@ define Press3 = Character('The Athletic', color="#FF0000")
 define Manager = Character('The Gafa', color="#808080")
 define Captain = Character('The Captain', color="#00008B")
 define Creator = Character('The Creator', color="#A020F0")
+define Doc = character('Physio', color='#FFFFFF')
 
 # Declare images used by this game. The zoom argument scales the image.
 
@@ -59,9 +62,11 @@ image Gafa_Room:
 label start:
     scene Neutral_Background
     show The_Athletic at left
+    with dissolve
     Derek "And that is the tenth game of the season, and that is 10 losses in a row for Haddonfield United."
     hide The_Athletic
     show The_Athletic at right
+    with dissolve
     Stewart "The Final Score is 3 neil for Nott'm Forrest and you just have to wonder... "
     Stewart "Where will Haddonfield end up if they have consistent scorelines like that?"
     hide The_Athletic
@@ -72,6 +77,7 @@ label start:
 
 label character_selection:
     show Narrator at left
+    with dissolve
     Narrator "What position are you going to play?"
     hide Narrator 
     $ position = None
@@ -120,6 +126,7 @@ menu:
 
 label choice1_striker:
     show Narrator at left
+    with dissolve
     Narrator "The Striker"
     Narrator "A striker in football is a forward player primarily tasked with scoring goals for their team by taking shots on the opposing team's goal."
     Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
@@ -128,6 +135,7 @@ label choice1_striker:
 
 label choice1_midfielder:
     show Narrator at left
+    with dissolve
     Narrator "The Midfielder"
     Narrator "A midfielder in football is a player positioned between the defenders and forwards, responsible for both defensive duties and initiating attacking plays."
     Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
@@ -136,6 +144,7 @@ label choice1_midfielder:
 
 label choice1_defender:
     show Narrator at left
+    with dissolve
     Narrator "The Defender"
     Narrator "A defender in football is a player tasked with protecting their team's goal and preventing the opposing team from scoring by intercepting passes, tackling opponents, and providing defensive support to their teammates."
     Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
@@ -155,6 +164,7 @@ label choices1_common:
 label press_conference_signing_1:
     $ press_perception = 50
     show Narrator at left
+    with dissolve
     Narrator "You have been signed to a team that is currently in the papers for their bad result on the weekend."
     Narrator "You will be asked by the press to give a statement on your teams performance and how you will help."
     hide Narrator
@@ -216,6 +226,7 @@ label press_conference_signing_b_finish:
 
 label press_conference_signing_c:
     show The_Athletic
+    with dissolve
     Press3 "How do you handle defeat, particularly when the team's performance is under scrutiny?"
     $ modest = False
     $ arrogant = False
@@ -237,6 +248,7 @@ menu:
 
 label press_conference_signing_b_finish_1:
     show The_Athletic
+    with dissolve
     Press3 "Interesting..."
     Press3 "As a newcomer to the sport, what do you hope to achieve in your rookie season?"
     $ inexperience = False
@@ -255,6 +267,7 @@ menu:
                                                                                                     jump press_conference_signing_ending
 label press_conference_signing_ending:
     show The_Athletic
+    with dissolve
     Press3 "Thank you for your time."
     hide The_Athletic
 
@@ -262,6 +275,7 @@ label press_conference_signing_ending:
 
 label meet_the_manager:
     show Narrator at left
+    with dissolve
     Narrator "After that eventful press conference..."
     Narrator "It's time to meet the gafa."
     scene Gafa_Room
@@ -277,12 +291,14 @@ menu:
 
 label meet_the_manager_a:
     show The_Gafa at left
+    with fade
     Manager "That's good to hear."
     Manager "I hope you can bring some good results to the team."
     jump meet_the_manager_finish
 
 label meet_the_manager_b:
     show The_Gafa at left
+    with fade
     Manager "I'm sorry to hear that."
     Manager "Just remember that the press are always looking for a story."
     jump meet_the_manager_finish
@@ -300,7 +316,9 @@ label meet_the_captain:
     scene Neutral_Background
     with dissolve
     show Captain_Sprite at left
+    with fade
     show The_Gafa at right
+    with fade
     Manager "This is your captain..."
     Manager "If you have any questions about the team..."
     Manager "Ask him"
@@ -329,6 +347,7 @@ menu:
                                                             
 label continue_meet_the_captain:
     show Captain_Sprite at left
+    with fade
     Captain "*nods*"
     Captain "That is all well and good, but words do not mean much on the pitch."
     Captain "Around here, respect is earned through hard work and dedication, not just showing up with a big contract."
@@ -351,6 +370,7 @@ menu:
 
 label continue_meet_the_captain_will:
     show Captain_Sprite at left
+    with fade
     Captain "We will see."
     Captain "Actions speak louder than words."
     Captain "Show me on the field."
@@ -361,6 +381,7 @@ label continue_meet_the_captain_will:
                                                                
 label continue_meet_the_captain_need:
     show Captain_Sprite at left
+    with fade
     Captain "Commitment."
     Captain "Consistency."
     Captain "A willingness to listen and learn."
@@ -368,6 +389,7 @@ label continue_meet_the_captain_need:
     Captain "it is about becoming a part of our family."
     Captain "You need to show everyone here that you are willing to put the team first."
     hide Captain_Sprite
+    with fade
 menu:
     "Understood. I am ready to do whatever it takes.":
                                                     $ captain_impression += 5
@@ -375,6 +397,7 @@ menu:
 
 label continue_meet_the_captain_need_1:
     show Captain_Sprite at left
+    with fade
     Captain "That is a start."
     Captain "Keep that attitude,"
     Captain "and you might just earn a place here."
@@ -383,6 +406,7 @@ label continue_meet_the_captain_need_1:
 
 label continue_meet_the_captain_understand:
     show Captain_Sprite at left
+    with fade
     Captain "Making a difference is not about making headlines."
     Captain "It is about the little things..."
     Captain "tracking back,"
@@ -398,6 +422,7 @@ menu:
 
 label continue_meet_the_captain_understand_1:
     show Captain_Sprite at left
+    with fade
     Captain "Alright."
     Captain "You have confidence,"
     Captain "I will give you that."
@@ -407,6 +432,7 @@ label continue_meet_the_captain_understand_1:
 
 label continue_meet_the_captain_underestimate:
     show Captain_Sprite at left
+    with fade
     Captain "Underestimating you?"
     Captain "This is not about what I think of you;"
     Captain "it is about what you bring to the team."
@@ -431,6 +457,7 @@ menu:
 
 label finish_meet_the_captain_1:
     show Captain_Sprite at left
+    with fade
     Captain "Good."
     Captain "I will see you tomorrow."
     jump end_first_day
@@ -505,12 +532,23 @@ label end_first_day_news_ego:
         jump end_first_day_news_end
 
 label end_first_day_news_end:
-    Press3 "Only time will tell if this player’s ambition will lead to team glory or personal gain."
+    Press3 "Only time will tell if this player's ambition will lead to team glory or personal gain."
     Press3 "For now, fans and analysts alike will be watching closely."
     Press3 "This is Laurence Mizzi with the Athletic, signing off. Stay tuned for more updates."
 
 label second_day:
+    scene Neutral_Background
+    with fade
+    show Narrator at left
+    with dissolve
+    Narrator "In order for you to go any further, you're gonna have to head over to the medical wing for a check-up."
+    Narrator "The doctors will ensure everything is in top shape."
+    Narrator "Then, you'll complete some fitness assessments."
+    Narrator "This will help you understand your physical condition and tailor your training accordingly."
+    hide Narrator
 
+label check_up_second_day:
+    Doc ""
 
 
 label cheater:
