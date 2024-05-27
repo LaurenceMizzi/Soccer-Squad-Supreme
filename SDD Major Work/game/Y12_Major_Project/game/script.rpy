@@ -16,7 +16,7 @@ define Press3 = Character('The Athletic', color="#FF0000")
 define Manager = Character('The Gafa', color="#808080")
 define Captain = Character('The Captain', color="#00008B")
 define Creator = Character('The Creator', color="#A020F0")
-define Doc = character('Physio', color='#FFFFFF')
+define Doc = Character('Physio', color='#FFFFFF')
 
 # Declare images used by this game. The zoom argument scales the image.
 
@@ -541,16 +541,137 @@ label second_day:
     with fade
     show Narrator at left
     with dissolve
+    Narrator "This is your second day."
     Narrator "In order for you to go any further, you're gonna have to head over to the medical wing for a check-up."
     Narrator "The doctors will ensure everything is in top shape."
     Narrator "Then, you'll complete some fitness assessments."
     Narrator "This will help you understand your physical condition and tailor your training accordingly."
     hide Narrator
+    with dissolve
+    jump check_up_first_week
 
-label check_up_second_day:
-    Doc ""
+label check_up_first_week:
+    Doc "Welcome to the medical wing."
+    Doc "I'm the team's physio, and I'll be conducting your check-up today."
+    Doc "Let's start with a few basic checks to ensure everything is in top shape."
+    jump check_up_first_week_progress
+
+label check_up_first_week_progress:
+    Doc "Now that we've covered the basics, we'll move on to the fitness assessments."
+    Doc "These will help us understand your physical condition better and how your stats are looking."
+    Doc "We'll have you do a series of tasks including a treadmill run, some strength tests, and flexibility measurements. Ready?"
+menu:
+    "Yes I am":
+            jump check_up_first_week_progress_treadmill
+
+label check_up_first_week_progress_treadmill:
+    Doc "Excellent. We'll begin with the treadmill."
+    Doc "I need you to run at a steady pace. Don't push too hard..." 
+    Doc "we want to see your natural speed level."
+    jump check_up_first_week_progress_strength
+
+label check_up_first_week_progress_strength:
+    Doc "Now let's move on to the strength tests."
+    Doc "We'll measure your upper and lower body strength with some weight exercises."
+    jump check_up_first_week_progress_agility
+
+label check_up_first_week_progress_agility:
+    Doc "The last part of the assessment is checking your agility."
+    Doc "We'll do a few simple stretches to see your range of motion."
+
+label check_up_first_week_end:
+    Doc "Here are your stats"
+# Need to display stats here so player knows what their stats are.
 
 
+label training_session_1_1:
+    $ stamina = 100
+    show Narrator at left
+    with dissolve
+    Narrator "This time, it's all about you."
+    Narrator "We're diving deep into individual skill development."
+    Narrator "You'll be working closely with specialized coaches,"
+    Narrator "fine-tuning those technical drills,"
+    Narrator "honing your positional play, and diving into personalized exercises designed just for you."
+    Narrator "This is where the magic happens,"
+    Narrator "where every touch, every move, brings you closer to your peak performance. Let's get to work."
+    Narrator "This first set of training will be light, low risk, but also low reward."
+    Narrator "What are you going to train first?"
+    hide Narrator
+menu:
+    "pace":
+        jump training_session_1_1_pace
+    "shooting":
+            jump training_session_1_1_shooting
+    "passing":
+            jump training_session_1_1_passing
+    "defending":
+            jump training_session_1_1_defending
+    "dribbling":
+            jump training_session_1_1_dribbling
+    "physical":
+            jump training_session_1_1_physical
+    "skip training...":
+                    jump second_day_continue
+
+label training_session_1_1_pace:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+menu:
+    "30 minutes":
+            $ pace += 5
+            $ stamina -= 
+            jump second_day_continue
+    "1 hour":
+            $ pace += 10
+
+            jump second_day_continue
+
+label training_session_1_1_shooting:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+menu:
+    "30 minutes":
+
+    "1 hour":
+label training_session_1_1_passing:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+menu:
+    "30 minutes":
+
+    "1 hour":
+label training_session_1_1_defending:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+menu:
+    "30 minutes":
+
+    "1 hour":
+label training_session_1_1_dribbling:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+menu:
+    "30 minutes":
+
+    "1 hour":
+label training_session_1_1_physical:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+menu:
+    "30 minutes":
+
+    "1 hour":
+label second_day_continue:
+    show Narrator at left
+    with dissolve
+    
 label cheater:
     Creator "You're not supposed to be here."
 
