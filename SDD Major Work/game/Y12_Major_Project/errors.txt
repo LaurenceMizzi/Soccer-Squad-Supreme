@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 468: reached end of line when expecting ':'.
-    if 
-       ^
+File "game/script.rpy", line 716: choice menuitem expects a non-empty block.
+    "Meet up with teammates":
+                             ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Fri May 24 16:43:13 2024
+Tue May 28 12:50:12 2024

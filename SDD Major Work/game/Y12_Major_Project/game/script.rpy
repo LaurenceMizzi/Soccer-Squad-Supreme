@@ -6,8 +6,7 @@
 # name of the character.
 
 define Player = Character('Main Player')
-define Derek = Character('Derek Rae', color="#808080")
-define Stewart = Character('Stewart Robson', color="#808080")
+define Comintator = Character('Comintator', color="#808080")
 define Narrator = Character('The Narrator', color="#008000")
 define Newspaper = Character('The Times', color="#FFFFFF")
 define Press1 = Character('The Guardians', color="#FF0000")
@@ -40,7 +39,7 @@ image Narrator:
     "narrator.png"
     zoom 0.85
 
-image The_Athletic:
+image Comintator:
     "interviewer_1.png"
     zoom 0.75
 
@@ -61,15 +60,13 @@ image Gafa_Room:
 
 label start:
     scene Neutral_Background
-    show The_Athletic at left
+    show Comintator at left
     with dissolve
-    Derek "And that is the tenth game of the season, and that is 10 losses in a row for Haddonfield United."
-    hide The_Athletic
-    show The_Athletic at right
-    with dissolve
-    Stewart "The Final Score is 3 neil for Nott'm Forrest and you just have to wonder... "
-    Stewart "Where will Haddonfield end up if they have consistent scorelines like that?"
-    hide The_Athletic
+    Comintator "And that is the tenth game of the season, and that is 10 losses in a row for Haddonfield United."
+    Comintator "The Final Score is 3 neil for Nott'm Forrest and you just have to wonder... "
+    Comintator "Where will Haddonfield end up if they have consistent scorelines like that?"
+    hide Comintator
+    jump character_selection
 
 # You are given a choice of position to play
 # This choice also comes with a base value of 0 with all stats
@@ -483,7 +480,6 @@ label end_first_day_news_modest:
     if modest == False:
         jump end_first_day_news_arrogant
 
-
 label end_first_day_news_arrogant:
     if arrogant == True:
         Press3 "In new signing's interview,"
@@ -583,6 +579,9 @@ label check_up_first_week_end:
     Doc "Here are your stats"
 # Need to display stats here so player knows what their stats are.
 
+# The player is then given a choice of what they want to do next
+# They are being told what choice they have of training
+# Depending on the choice the player makes, their stats will change
 
 label training_session_1_1:
     $ stamina = 100
@@ -598,6 +597,7 @@ label training_session_1_1:
     Narrator "This first set of training will be light, low risk, but also low reward."
     Narrator "What are you going to train first?"
     hide Narrator
+    with dissolve
 menu:
     "pace":
         jump training_session_1_1_pace
@@ -618,60 +618,326 @@ label training_session_1_1_pace:
     show Narrator at left
     with dissolve
     Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
 menu:
     "30 minutes":
             $ pace += 5
-            $ stamina -= 
+            $ stamina -= 2
             jump second_day_continue
     "1 hour":
             $ pace += 10
-
+            $ stamina -= 5
             jump second_day_continue
 
 label training_session_1_1_shooting:
     show Narrator at left
     with dissolve
     Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
 menu:
     "30 minutes":
-
+            $ shooting += 5
+            $ stamina -= 2
+            jump second_day_continue
     "1 hour":
+            $ shooting += 10
+            $ stamina -= 5
+            jump second_day_continue
+
 label training_session_1_1_passing:
     show Narrator at left
     with dissolve
     Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
 menu:
     "30 minutes":
-
+            $ passing += 5
+            $ stamina -= 2
+            jump second_day_continue
     "1 hour":
+            $ passing += 10
+            $ stamina -= 5
+            jump second_day_continue
+
 label training_session_1_1_defending:
     show Narrator at left
     with dissolve
     Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
 menu:
     "30 minutes":
-
+            $ defending += 5
+            $ stamina -= 2
+            jump second_day_continue
     "1 hour":
+            $ defending += 10
+            $ stamina -= 5
+            jump second_day_continue
+
 label training_session_1_1_dribbling:
     show Narrator at left
     with dissolve
     Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
 menu:
     "30 minutes":
-
+            $ dribbling += 5
+            $ stamina -= 2
+            jump second_day_continue
     "1 hour":
+            $ dribbling += 10
+            $ stamina -= 5
+            jump second_day_continue
+
 label training_session_1_1_physical:
     show Narrator at left
     with dissolve
     Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
 menu:
     "30 minutes":
-
+            $ physical += 5
+            $ stamina -= 2
+            jump second_day_continue
     "1 hour":
+            $ physical += 10
+            $ stamina -= 5
+            jump second_day_continue
+
+# The player is then given a choice of what they want to do next
+# They can either meet up with their teammates or go to their second training session
+# Depending on the choice the player makes, their relationship with their teammates will change
+
 label second_day_continue:
+    $ teams_impression = 50
     show Narrator at left
     with dissolve
-    
+    Narrator "You have finished your first training session for the first week."
+    Narrator "You can now have lunch with your teammates or you can jump straight into your second training session."
+    hide Narrator
+    with dissolve
+menu:
+    "Meet up with teammates":
+                        $ teams_impression += 10
+                        jump meet_teammates_1
+
+    "Go to second training":
+                        $ teams_impression -= 10
+                        show Narrator at left
+                        with dissolve
+                        Narrator "Your teammates will remember this..."
+                        hide Narrator
+                        with dissolve
+                        jump training_session_1_2
+
+label meet_teammates_1:
+    show Narrator at left
+    with dissolve
+    Narrator "You have decided to meet up with your teammates."
+    Narrator "This is a great opportunity to bond with them and build relationships."
+    Narrator "You head over to the team cafeteria where your teammates are already gathered."
+    Narrator "What food will you be having?"
+    hide Narrator
+    with dissolve
+menu:
+    "Healthy salad":
+                $ team_impression += 5
+                $ stamina += 5
+                jump meet_teammates_1_2
+    "Burger and fries":
+                $ stamina -= 5
+                jump meet_teammates_1_2
+    "Protein shake":
+                $ team_impression += 5
+                $ stamina += 10
+                jump meet_teammates_1_2
+    "Skip lunch...":
+                $ team_impression -= 5
+                jump training_session_1_2
+
+label meet_teammates_1_2:
+    show Narrator at left
+    with dissolve
+    Narrator "You sit down with your teammates and engage in some light conversation."
+    Narrator "You get to know them better, and they get to know you."
+    Narrator "This is a great way to build camaraderie and trust within the team."
+    Narrator "After lunch, you head back to the training ground for your second session."
+    hide Narrator
+    with dissolve
+    jump training_session_1_2
+
+label training_session_1_2:
+    show Narrator at left
+    with dissolve
+    Narrator "Welcome to your second training session."
+    Narrator "This session will be more intense, high risk, but also high reward."
+    Narrator "What are you going to train this time?"
+    hide Narrator
+    with dissolve
+menu:
+    "pace":
+        jump training_session_1_2_pace
+    "shooting":
+            jump training_session_1_2_shooting
+    "passing":
+            jump training_session_1_2_passing
+    "defending":
+            jump training_session_1_2_defending
+    "dribbling":
+            jump training_session_1_2_dribbling
+    "physical":
+            jump training_session_1_2_physical
+    "skip training...":
+                    jump match_day_1
+
+label training_session_1_2_pace:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
+menu:
+    "30 minutes":
+            $ pace += 10
+            $ stamina -= 5
+            jump match_day_1
+    "1 hour":
+            $ pace += 15
+            $ stamina -= 10
+            jump match_day_1
+
+label training_session_1_2_shooting:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
+menu:
+    "30 minutes":
+            $ shooting += 10
+            $ stamina -= 5
+            jump match_day_1
+    "1 hour":
+            $ shooting += 15
+            $ stamina -= 10
+            jump match_day_1
+
+label training_session_1_2_passing:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
+menu:
+    "30 minutes":
+            $ passing += 10
+            $ stamina -= 5
+            jump match_day_1
+    "1 hour":
+            $ passing += 15
+            $ stamina -= 10
+            jump match_day_1
+
+label training_session_1_2_defending:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
+menu:
+    "30 minutes":
+            $ defending += 10
+            $ stamina -= 5
+            jump match_day_1
+    "1 hour":
+            $ defending += 15
+            $ stamina -= 10
+            jump match_day_1
+
+label training_session_1_2_dribbling:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
+menu:
+    "30 minutes":
+            $ dribbling += 10
+            $ stamina -= 5
+            jump match_day_1
+    "1 hour":
+            $ dribbling += 15
+            $ stamina -= 10
+            jump match_day_1
+
+label training_session_1_2_physical:
+    show Narrator at left
+    with dissolve
+    Narrator "How long do you want to train this attribute?"
+    hide Narrator
+    with dissolve
+menu:
+    "30 minutes":
+            $ physical += 10
+            $ stamina -= 5
+            jump match_day_1
+    "1 hour":
+            $ physical += 15
+            $ stamina -= 10
+            jump match_day_1
+
+# There is a list of teams that have a rating for the difficulty of the match
+
+
+label match_day_1:
+    $ manchester_city = 80
+    $ arsenal = 78
+    $ liverpool = 76
+    $ aston_villa = 74
+    $ tottenham = 72
+    $ chelsea = 70
+    $ newcastle = 68
+    $ manchester_united = 66
+    $ west_ham = 64
+    $ crystal_palace = 62
+    $ brighton = 60
+    $ bourneouth = 58
+    $ fulham = 56
+    $ wolves = 54
+    $ everton = 52
+    $ brentford = 50
+    $ nottm_forest = 48
+    $ haddonfield_united = 46
+    $ burnly = 44
+    $ sheffield_united = 42
+    show Narrator at left
+    with dissolve
+    Narrator "It's match day."
+    Narrator "You've trained hard, built relationships with your teammates, and honed your skills."
+    Narrator "Now it's time to put it all to the test on the pitch."
+    Narrator "The team is counting on you to make a difference."
+    hide Narrator
+    with dissolve
+    jump match_day_1_start
+
+label match_day_1_start:
+    show Narrator at left
+    with dissolve
+    Narrator "The match is about to start."
+    Narrator "You take your position on the field, ready to give it your all."
+    Narrator "The whistle blows, and the game begins."
+    hide Narrator
+    with dissolve
+    jump match_day_1_play
+
+label match_day_1_play:
+
 label cheater:
     Creator "You're not supposed to be here."
 
