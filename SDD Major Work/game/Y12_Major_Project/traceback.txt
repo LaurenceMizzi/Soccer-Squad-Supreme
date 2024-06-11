@@ -1,28 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 19, in script
-    define Doc = character('Physio', color='#FFFFFF')
-  File "game/script.rpy", line 19, in <module>
-    define Doc = character('Physio', color='#FFFFFF')
-NameError: name 'character' is not defined
+  File "game/script.rpy", line 941, in script
+    if position = Striker:
+SyntaxError: invalid syntax (game/script.rpy, line 941)
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 19, in script
-    define Doc = character('Physio', color='#FFFFFF')
-  File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\ast.py", line 2219, in execute
-    self.set()
-  File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\ast.py", line 2233, in set
-    value = renpy.python.py_eval_bytecode(self.code.bytecode)
-  File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\python.py", line 1202, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 19, in <module>
-    define Doc = character('Physio', color='#FFFFFF')
-NameError: name 'character' is not defined
+  File "game/script.rpy", line 941, in script
+    if position = Striker:
+  File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\ast.py", line 1842, in execute
+    if renpy.python.py_eval(condition):
+  File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\python.py", line 1207, in py_eval
+    code = py_compile(code, 'eval')
+  File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\python.py", line 1144, in py_compile
+    raise e
+  File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\python.py", line 1081, in py_compile
+    raise orig_e
+  File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\python.py", line 1073, in py_compile
+    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, 1)
+SyntaxError: invalid syntax (game/script.rpy, line 941)
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.1.24030407
 Y12_Major_Project 1.0
-Mon May 27 16:19:44 2024
+Mon Jun  3 09:22:10 2024

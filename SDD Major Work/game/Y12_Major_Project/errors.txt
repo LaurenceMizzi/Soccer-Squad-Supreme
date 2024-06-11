@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 716: choice menuitem expects a non-empty block.
-    "Meet up with teammates":
-                             ^
+File "game/script.rpy", line 945: end of line expected.
+    Comintator "Haddonfield United's new signing receives a through ball from the midfield, finding himself one-on-one with the goalkeeper just outside the penalty box."\
+                                                                                                                                                                         ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Tue May 28 12:50:12 2024
+Fri May 31 16:56:41 2024

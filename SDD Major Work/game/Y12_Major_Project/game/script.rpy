@@ -1,4 +1,4 @@
-﻿# The script of the game goes in this file.
+# The script of the game goes in this file.
 
 # ChatGPT Code For Images Name "Artisitic Visionary"
 
@@ -6,7 +6,7 @@
 # name of the character.
 
 define Player = Character('Main Player')
-define Comintator = Character('Comintator', color="#808080")
+define Commentator = Character('Commentator', color="#808080")
 define Narrator = Character('The Narrator', color="#008000")
 define Newspaper = Character('The Times', color="#FFFFFF")
 define Press1 = Character('The Guardians', color="#FF0000")
@@ -39,7 +39,7 @@ image Narrator:
     "narrator.png"
     zoom 0.85
 
-image Comintator:
+image Commentator:
     "interviewer_1.png"
     zoom 0.75
 
@@ -60,12 +60,12 @@ image Gafa_Room:
 
 label start:
     scene Neutral_Background
-    show Comintator at left
+    show Commentator at left
     with dissolve
-    Comintator "And that is the tenth game of the season, and that is 10 losses in a row for Haddonfield United."
-    Comintator "The Final Score is 3 neil for Nott'm Forrest and you just have to wonder... "
-    Comintator "Where will Haddonfield end up if they have consistent scorelines like that?"
-    hide Comintator
+    Commentator "And that is the tenth game of the season, and that is only 5 points for Haddonfield United."
+    Commentator "The Final Score is 3-1 for Aston Villa and you just have to wonder... "
+    Commentator "Where will Haddonfield end up if they have consistent scorelines like that?"
+    hide Commentator
     jump character_selection
 
 # You are given a choice of position to play
@@ -90,11 +90,11 @@ label character_selection:
 menu:
     "Striker":
             $ position = "Striker"
-            $ pace = 75
-            $ shooting = 80
-            $ passing = 40
-            $ defending = 20
-            $ dribbling = 60
+            $ pace = 70
+            $ shooting = 75
+            $ passing = 45
+            $ defending = 30
+            $ dribbling = 55
             $ physical = 45
             # all up stats for striker is 320
             jump choice1_striker
@@ -410,7 +410,7 @@ label continue_meet_the_captain_understand:
     Captain "making the right pass,"
     Captain "supporting your teammates."
     Captain "Show me that you can do that,"
-    Captain "and meybe we will see eye to eye."
+    Captain "and maybe we will see eye to eye."
     hide Captain_Sprite
 menu:
     "I can do that. Just watch.":
@@ -434,7 +434,7 @@ label continue_meet_the_captain_underestimate:
     Captain "This is not about what I think of you;"
     Captain "it is about what you bring to the team."
     Captain "Drop the attitude and focus on proving yourself."
-    Captain "If you ca not do that, you will not last long here."
+    Captain "If you can't do that, you will not last long here."
     jump finish_meet_the_captain
 
 # The player is then given a brief on what is expected of them
@@ -715,7 +715,7 @@ menu:
 # Depending on the choice the player makes, their relationship with their teammates will change
 
 label second_day_continue:
-    $ teams_impression = 50
+    $ team_impression = 50
     show Narrator at left
     with dissolve
     Narrator "You have finished your first training session for the first week."
@@ -724,11 +724,11 @@ label second_day_continue:
     with dissolve
 menu:
     "Meet up with teammates":
-                        $ teams_impression += 10
+                        $ team_impression += 10
                         jump meet_teammates_1
 
     "Go to second training":
-                        $ teams_impression -= 10
+                        $ team_impression -= 10
                         show Narrator at left
                         with dissolve
                         Narrator "Your teammates will remember this..."
@@ -896,26 +896,26 @@ menu:
 
 
 label match_day_1:
-    $ manchester_city = 80
-    $ arsenal = 78
-    $ liverpool = 76
-    $ aston_villa = 74
-    $ tottenham = 72
-    $ chelsea = 70
-    $ newcastle = 68
-    $ manchester_united = 66
-    $ west_ham = 64
-    $ crystal_palace = 62
-    $ brighton = 60
-    $ bourneouth = 58
-    $ fulham = 56
-    $ wolves = 54
-    $ everton = 52
-    $ brentford = 50
-    $ nottm_forest = 48
-    $ haddonfield_united = 46
-    $ burnly = 44
-    $ sheffield_united = 42
+    $ manchester_city = 24
+    $ arsenal = 24
+    $ liverpool = 23
+    $ aston_villa = 22
+    $ tottenham = 26
+    $ chelsea = 12
+    $ newcastle = 17
+    $ manchester_united = 15
+    $ west_ham = 14
+    $ crystal_palace = 12
+    $ brighton = 17
+    $ bourneouth = 6
+    $ fulham = 12
+    $ wolves = 12
+    $ everton = 10
+    $ brentford = 13
+    $ nottm_forest = 10
+    $ haddonfield_united = 5
+    $ burnly = 4
+    $ sheffield_united = 1
     show Narrator at left
     with dissolve
     Narrator "It's match day."
@@ -927,18 +927,93 @@ label match_day_1:
     jump match_day_1_start
 
 label match_day_1_start:
-    show Narrator at left
+    $ score_for_1 = 0
+    $ score_against_1 = 0
+    show Commentator at left
     with dissolve
-    Narrator "The match is about to start."
-    Narrator "You take your position on the field, ready to give it your all."
-    Narrator "The whistle blows, and the game begins."
-    hide Narrator
+    Commentator "Here we are at Haddonfiel for Haddonfield United v Liverpool"
+    Commentator "The referee blows the whistle, and the game begins."
+    hide Commentator
     with dissolve
-    jump match_day_1_play
+    if position == "Striker":
+        jump match_day_1_play_s_1
+    if position == "Midfielder":
+        jump match_day_1_play_m_1
+    if position == "Defender":
+        jump match_day_1_play_d_1
 
-label match_day_1_play:
+# Striker scenario 13th minute
 
-label cheater:
-    Creator "You're not supposed to be here."
+label match_day_1_play_s_1:
+        show Commentator at left
+        Commentator "Haddonfield United's new signing starts in his new position as the central forward, ready to lead the attack."
+        Commentator "We are going into the 13th minute and..."
+        Commentator "Haddonfield United's new signing receives a through ball from the midfield, finding himself one-on-one with the goalkeeper just outside the penalty box."
+        hide Commentator
+        with dissolve
+menu:
+    "Quick shot":
+                jump match_day_1_play_s_quick_shot
+    "Dribble past":
+                jump match_day_1_play_s_dribble_past
+
+label match_day_1_play_m_1:
+
+
+
+label match_day_1_play_d_1:
+
+
+label match_day_1_play_s_quick_shot:
+    if shooting >= 80:
+        show Commentator at left
+        Commentator "He takes a quick shot on goal."
+        Commentator "AND ITS IN!!!"
+        Commentator "The ball sails past the goalkeeper into the net, giving Haddonfield United an early lead."
+        $ score_for_1 += 1
+        jump match_day_1_play_s_2
+    if shooting < 80:
+        show Commentator at left
+        Commentator "He takes a quick shot on goal."
+        Commentator "AND HE'S MISSED!!!"
+        Commentator "The shot is rushed and goes wide of the post, missing a clear opportunity."
+        jump match_day_1_play_s_2
+
+label match_day_1_play_s_dribble_past:
+    if dribbling >= 60:
+        show Commentator at left
+        Commentator "He tries to dribble past the keeper."
+        Commentator "HE'S DONE IT!!!"
+        Commentator "He skillfully dribbles around the goalkeeper and slots the ball into the empty net."
+        $ score_for_1 += 1
+        jump match_day_1_play_s_2
+    if dribbling < 60:
+        show Commentator at left
+        Commentator "He tries to dribble past the keeper"
+        Commentator "OH NO!!!"
+        Commentator "The goalkeeper anticipates the move and dives to steal the ball from his feet."
+        jump match_day_1_play_s_2
+
+label match_day_1_play_s_2:
+    show Commentator at left
+    Commentator "He now finds himself at the edge of the penalty area with the ball at his feet."
+    Commentator "He notices a teammate, making a run into the box."
+    hide Commentator
+    with dissolve
+menu:
+    "direct shot":
+                jump match_day_1_play_s_direct_shot
+    "make pass":
+            jump match_day_1_play_s_make_pass
+
+label match_day_1_play_s_direct_shot:
+    if shooting >= 85
+        show Commentator at left
+        Commentator "He attempts a direct shot on goal"
+        Commentator "And its in!!!"
+        Commentator "The "
+
+
+label match_day_1_play_s_make_pass:
 
 return
