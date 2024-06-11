@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 945: end of line expected.
-    Comintator "Haddonfield United's new signing receives a through ball from the midfield, finding himself one-on-one with the goalkeeper just outside the penalty box."\
-                                                                                                                                                                         ^
+File "game/script.rpy", line 942: reached end of line when expecting ':'.
+    if shooting >= 85
+                     ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Fri May 31 16:56:41 2024
+Tue Jun 11 12:13:45 2024

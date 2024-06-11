@@ -75,78 +75,15 @@ label start:
 label character_selection:
     show Narrator at left
     with dissolve
-    Narrator "What position are you going to play?"
+    Narrator "You are the new striker for Haddonfield United."
     hide Narrator 
-    $ position = None
-    $ pace = 0
-    $ shooting = 0
-    $ passing = 0
-    $ defending = 0
-    $ dribbling = 0
-    $ physical = 0
-
-# From the choices they will all equal a base of 320 stats as to not have a class that is better.
-
-menu:
-    "Striker":
-            $ position = "Striker"
-            $ pace = 70
-            $ shooting = 75
-            $ passing = 45
-            $ defending = 30
-            $ dribbling = 55
-            $ physical = 45
-            # all up stats for striker is 320
-            jump choice1_striker
-    "Midfielder":
-            $ position = "Midfielder"
-            $ pace = 55
-            $ shooting = 50
-            $ passing = 75
-            $ defending = 40
-            $ dribbling = 50
-            $ physical = 50
-            # all up stats for midfielder is 320
-            jump choice1_midfielder
-    "Defender":
-            $ position = "Defender"
-            $ pace = 45
-            $ shooting = 30
-            $ passing = 45
-            $ defending = 80
-            $ dribbling = 40
-            $ physical = 80
-            # all up stats for defender is 320
-            jump choice1_defender
-
-# From the choice of position there will be a brief summary of the position to give to the user some context.
-
-label choice1_striker:
-    show Narrator at left
-    with dissolve
-    Narrator "The Striker"
-    Narrator "A striker in football is a forward player primarily tasked with scoring goals for their team by taking shots on the opposing team's goal."
-    Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
-    hide Narrator
+    $ pace = 70
+    $ shooting = 75
+    $ passing = 45
+    $ defending = 30
+    $ dribbling = 55
+    $ physical = 45
     jump choices1_common
-
-label choice1_midfielder:
-    show Narrator at left
-    with dissolve
-    Narrator "The Midfielder"
-    Narrator "A midfielder in football is a player positioned between the defenders and forwards, responsible for both defensive duties and initiating attacking plays."
-    Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
-    hide Narrator
-    jump choices1_common
-
-label choice1_defender:
-    show Narrator at left
-    with dissolve
-    Narrator "The Defender"
-    Narrator "A defender in football is a player tasked with protecting their team's goal and preventing the opposing team from scoring by intercepting passes, tackling opponents, and providing defensive support to their teammates."
-    Narrator "The press will be onto you if any bad performances arise, and whether you're the reason your team lost the game."
-    jump choices1_common
-    hide Narrator
 
 # Little newspaper snippet to show the player has been signed to the team
 
@@ -935,12 +872,7 @@ label match_day_1_start:
     Commentator "The referee blows the whistle, and the game begins."
     hide Commentator
     with dissolve
-    if position == "Striker":
-        jump match_day_1_play_s_1
-    if position == "Midfielder":
-        jump match_day_1_play_m_1
-    if position == "Defender":
-        jump match_day_1_play_d_1
+    jump match_day_1_play_s_1
 
 # Striker scenario 13th minute
 
@@ -1007,7 +939,7 @@ menu:
             jump match_day_1_play_s_make_pass
 
 label match_day_1_play_s_direct_shot:
-    if shooting >= 85
+    if shooting >= 85:
         show Commentator at left
         Commentator "He attempts a direct shot on goal"
         Commentator "And its in!!!"
