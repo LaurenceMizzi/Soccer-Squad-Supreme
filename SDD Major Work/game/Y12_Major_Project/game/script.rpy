@@ -5,7 +5,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define Player = Character('Main Player')
+define pov = Character('[povname]')
 define Commentator = Character('Commentator', color="#808080")
 define Narrator = Character('The Narrator', color="#008000")
 define Newspaper = Character('The Times', color="#FFFFFF")
@@ -62,8 +62,8 @@ label start:
     scene Neutral_Background
     show Commentator at left
     with dissolve
-    Commentator "And that is the tenth game of the season, and that is only 5 points for Haddonfield United."
-    Commentator "The Final Score is 3-1 for Aston Villa and you just have to wonder... "
+    Commentator "And that is the 22nd game of the season, and that is only 5 points for Haddonfield United."
+    Commentator "The Final Score is 4-0 for Haddonfield United and that is their first good result of the 22 matches, which makes you wonder... "
     Commentator "Where will Haddonfield end up if they have consistent scorelines like that?"
     hide Commentator
     jump character_selection
@@ -73,14 +73,16 @@ label start:
 # This is to ensure that the player does not have an advantage over the other classes
 
 label character_selection:
+    $ povname = renpy.input("What is my name?", length=32)
+    pov "My name is [povname]."
     show Narrator at left
     with dissolve
+    Narrator "Interesting Name Choice."
     Narrator "You are the new striker for Haddonfield United."
     hide Narrator 
     $ pace = 70
-    $ shooting = 75
+    $ shooting = 80
     $ passing = 45
-    $ defending = 30
     $ dribbling = 55
     $ physical = 45
     jump choices1_common
@@ -90,7 +92,7 @@ label character_selection:
 label choices1_common:
     show Breaking_News_Background
     with dissolve
-    Newspaper "New Signing At Haddonfield United!"
+    Newspaper "New Striker Signing At Haddonfield United!"
     Newspaper "Will this player be a catalyst in a team that needs it most?"
 
 # The player is introduce to the press conference where they will be asked questions about their signing to the team
@@ -159,13 +161,10 @@ label press_conference_signing_b_finish:
 # No matter what choice you make in this scene there will always be a negative outcome
 
 label press_conference_signing_c:
-    show The_Athletic
-    with dissolve
     Press3 "How do you handle defeat, particularly when the team's performance is under scrutiny?"
     $ modest = False
     $ arrogant = False
     $ egotistical = False
-    hide The_Athletic
 menu:
     "I try to accept responsibility for my own mistakes and work harder to improve.":
                                                                                     $ press_perception += 5
@@ -181,14 +180,11 @@ menu:
                                                                                             jump press_conference_signing_b_finish_1
 
 label press_conference_signing_b_finish_1:
-    show The_Athletic
-    with dissolve
     Press3 "Interesting..."
     Press3 "As a newcomer to the sport, what do you hope to achieve in your rookie season?"
     $ inexperience = False
     $ cocky = False
     $ ego = False
-    hide The_Athletic
 menu:
     "I'm eager to learn and adapt to the challenges of professional competition, aiming to make a significant impact on the team.":
                                                                                                                                 $ inexperience = True      
@@ -200,10 +196,7 @@ menu:
                                                                                                     $ ego = True
                                                                                                     jump press_conference_signing_ending
 label press_conference_signing_ending:
-    show The_Athletic
-    with dissolve
     Press3 "Thank you for your time."
-    hide The_Athletic
 
 # The player is then introduced to the manager
 
@@ -542,8 +535,6 @@ menu:
             jump training_session_1_1_shooting
     "passing":
             jump training_session_1_1_passing
-    "defending":
-            jump training_session_1_1_defending
     "dribbling":
             jump training_session_1_1_dribbling
     "physical":
@@ -596,22 +587,6 @@ menu:
             jump second_day_continue
     "1 hour":
             $ passing += 10
-            $ stamina -= 5
-            jump second_day_continue
-
-label training_session_1_1_defending:
-    show Narrator at left
-    with dissolve
-    Narrator "How long do you want to train this attribute?"
-    hide Narrator
-    with dissolve
-menu:
-    "30 minutes":
-            $ defending += 5
-            $ stamina -= 2
-            jump second_day_continue
-    "1 hour":
-            $ defending += 10
             $ stamina -= 5
             jump second_day_continue
 
@@ -724,8 +699,6 @@ menu:
             jump training_session_1_2_shooting
     "passing":
             jump training_session_1_2_passing
-    "defending":
-            jump training_session_1_2_defending
     "dribbling":
             jump training_session_1_2_dribbling
     "physical":
@@ -781,22 +754,6 @@ menu:
             $ stamina -= 10
             jump match_day_1
 
-label training_session_1_2_defending:
-    show Narrator at left
-    with dissolve
-    Narrator "How long do you want to train this attribute?"
-    hide Narrator
-    with dissolve
-menu:
-    "30 minutes":
-            $ defending += 10
-            $ stamina -= 5
-            jump match_day_1
-    "1 hour":
-            $ defending += 15
-            $ stamina -= 10
-            jump match_day_1
-
 label training_session_1_2_dribbling:
     show Narrator at left
     with dissolve
@@ -829,30 +786,30 @@ menu:
             $ stamina -= 10
             jump match_day_1
 
-# There is a list of teams that have a rating for the difficulty of the match
+# There is a list of teams that have a set of points for the amount of points they had at that point in the Premier League.
 
 
 label match_day_1:
-    $ manchester_city = 24
-    $ arsenal = 24
-    $ liverpool = 23
-    $ aston_villa = 22
-    $ tottenham = 26
-    $ chelsea = 12
-    $ newcastle = 17
-    $ manchester_united = 15
-    $ west_ham = 14
-    $ crystal_palace = 12
-    $ brighton = 17
-    $ bourneouth = 6
-    $ fulham = 12
-    $ wolves = 12
-    $ everton = 10
-    $ brentford = 13
-    $ nottm_forest = 10
-    $ haddonfield_united = 5
-    $ burnly = 4
-    $ sheffield_united = 1
+    $ manchester_city = 46
+    $ arsenal = 46
+    $ liverpool = 51
+    $ aston_villa = 43
+    $ tottenham = 40
+    $ chelsea = 31
+    $ newcastle = 32
+    $ manchester_united = 35
+    $ west_ham = 36
+    $ crystal_palace = 24
+    $ brighton = 32
+    $ bournemouth = 26
+    $ fulham = 25
+    $ wolves = 29
+    $ everton = 28
+    $ brentford = 20
+    $ nottm_forest = 20
+    $ haddonfield_united = 19
+    $ burnly = 12
+    $ sheffield_united = 10
     show Narrator at left
     with dissolve
     Narrator "It's match day."
@@ -865,10 +822,15 @@ label match_day_1:
 
 label match_day_1_start:
     $ score_for_1 = 0
-    $ score_against_1 = 0
+    $ score_against_1 = 4
+    show Narrator at left
+    with dissolve 
+    Narrator "In reality Newcastle drew this game 4-4 so you'll have options to make this scoreline better then the realife life result."
+    hide Narrator
+    with dissolve
     show Commentator at left
     with dissolve
-    Commentator "Here we are at Haddonfiel for Haddonfield United v Liverpool"
+    Commentator "Here we are at St. James' Park for Haddonfield United v Newcastle United"
     Commentator "The referee blows the whistle, and the game begins."
     hide Commentator
     with dissolve
@@ -878,7 +840,7 @@ label match_day_1_start:
 
 label match_day_1_play_s_1:
         show Commentator at left
-        Commentator "Haddonfield United's new signing starts in his new position as the central forward, ready to lead the attack."
+        Commentator "Haddonfield United's new signing [povname] starts in his new position as the central forward, ready to lead the attack."
         Commentator "We are going into the 13th minute and..."
         Commentator "Haddonfield United's new signing receives a through ball from the midfield, finding himself one-on-one with the goalkeeper just outside the penalty box."
         hide Commentator
@@ -889,24 +851,17 @@ menu:
     "Dribble past":
                 jump match_day_1_play_s_dribble_past
 
-label match_day_1_play_m_1:
-
-
-
-label match_day_1_play_d_1:
-
-
 label match_day_1_play_s_quick_shot:
     if shooting >= 80:
         show Commentator at left
-        Commentator "He takes a quick shot on goal."
+        Commentator "[povname] takes a quick shot on goal."
         Commentator "AND ITS IN!!!"
-        Commentator "The ball sails past the goalkeeper into the net, giving Haddonfield United an early lead."
+        Commentator "The ball sails past the goalkeeper into the net, giving Haddonfield United an early goal."
         $ score_for_1 += 1
         jump match_day_1_play_s_2
     if shooting < 80:
         show Commentator at left
-        Commentator "He takes a quick shot on goal."
+        Commentator "[povname] takes a quick shot on goal."
         Commentator "AND HE'S MISSED!!!"
         Commentator "The shot is rushed and goes wide of the post, missing a clear opportunity."
         jump match_day_1_play_s_2
@@ -914,21 +869,23 @@ label match_day_1_play_s_quick_shot:
 label match_day_1_play_s_dribble_past:
     if dribbling >= 60:
         show Commentator at left
-        Commentator "He tries to dribble past the keeper."
+        Commentator "[povname] tries to dribble past the keeper."
         Commentator "HE'S DONE IT!!!"
-        Commentator "He skillfully dribbles around the goalkeeper and slots the ball into the empty net."
+        Commentator "[povname] skillfully dribbles around the goalkeeper and slots the ball into the empty net."
         $ score_for_1 += 1
         jump match_day_1_play_s_2
     if dribbling < 60:
         show Commentator at left
-        Commentator "He tries to dribble past the keeper"
+        Commentator "[povname] tries to dribble past the keeper"
         Commentator "OH NO!!!"
-        Commentator "The goalkeeper anticipates the move and dives to steal the ball from his feet."
+        Commentator "The goalkeeper anticipates the move and dives to steal the ball from [povname] feet."
         jump match_day_1_play_s_2
 
 label match_day_1_play_s_2:
     show Commentator at left
-    Commentator "He now finds himself at the edge of the penalty area with the ball at his feet."
+    with dissolve
+    Commentator "It is the 28th minute."
+    Commentator "[povname] now finds himself at the edge of the penalty area with the ball at his feet."
     Commentator "He notices a teammate, making a run into the box."
     hide Commentator
     with dissolve
@@ -941,11 +898,170 @@ menu:
 label match_day_1_play_s_direct_shot:
     if shooting >= 85:
         show Commentator at left
-        Commentator "He attempts a direct shot on goal"
+        Commentator "[povname] attempts a direct shot on goal"
         Commentator "And its in!!!"
-        Commentator "The "
-
+        Commentator "The shot is powerful and accurate, beating the goalkeeper adding to Haddonfield's score."
+        $ score_for_1 += 1
+        jump match_day_1_play_s_3
+    if shooting < 85:
+        show Commentator at left
+        Commentator "[povname] attempts a direct shot on goal"
+        Commentator "And oh no!!!"
+        Commentator "The shot is blocked by a defender who lunges in at the last moment."
+        jump match_day_1_play_s_3
 
 label match_day_1_play_s_make_pass:
+    if passing >= 50:
+        show Commentator at left
+        Commentator "[povname] goes to make the pass"
+        Commentator "I don't believe it!!!"
+        Commentator "He receives the ball and scores, showcasing excellent teamwork."
+        $ score_for_1 += 1
+        jump match_day_1_play_s_3
+    if passing < 50:
+        show Commentator at left
+        Commentator "[povname] goes to make the pass"
+        Commentator "And would you believe it???"
+        Commentator "The pass is intercepted by a defender, and the opportunity is wasted."
+        jump match_day_1_play_s_3
+
+label match_day_1_play_s_3:
+    show Commentator at left
+    with dissolve
+    Commentator "It is the 54th minute"
+    Commentator "And [povname] is fouled just outside the penalty area," 
+    Commentator "earning a free-kick in a dangerous position."
+    hide Commentator
+    with dissolve
+menu:
+    "Take the free-kick yourself":
+                                jump match_day_1_play_s_freekick
+    "Lay ball off to teammate":
+                            jump match_day_1_play_s_lay_off
+
+label match_day_1_play_s_freekick:
+    if shooting >= 90:
+        show Commentator at left
+        Commentator "[povname] takes the run-up and..."
+        Commentator "It's in!!!"
+        Commentator "He curls the ball over the wall and into the top corner, scoring a stunning goal."
+        $ score_for_1 += 1
+        jump match_day_1_play_s_4
+    if shooting < 90:
+        show Commentator at left 
+        Commentator "[povname] takes the run-up and..."
+        Commentator "Oh no!!!"
+        Commentator "The free-kick lacks precision and is easily caught by the goalkeeper."
+        jump match_day_1_play_s_4
+
+label match_day_1_play_s_lay_off:
+    if passing >= 50:
+        show Commentator at left
+        Commentator "[povname] makes a quick short pass and..."
+        Commentator "He has done it!!!"
+        Commentator "The teammate strikes the ball first-time into the net, surprising the defense."
+        $ score_for_1 += 1
+        jump match_day_1_play_s_4
+    if passing < 50:
+        show Commentator at left
+        Commentator "[povname] make a quick short pass and..."
+        Commentator "Whats happenend here???"
+        Commentator "The routine is poorly executed, and the ball is cleared by the defense."
+        jump match_day_1_play_s_4
+
+label match_day_1_play_s_4:
+    show Commentator at left
+    with dissolve
+    Commentator "It is the 79th minute"
+    Commentator "And the new signing [povname] makes a run into the box and recieves a cross from the right wing."
+    hide Commentator
+    with dissolve
+menu:
+    "Make Header":
+                jump match_day_1_play_s_make_header
+    "Control Ball":
+                jump match_day_1_play_s_control_ball
+
+label match_day_1_play_s_make_header:
+    if shooting >= 90:
+        show Commentator at left
+        Commentator "[povname] goes for the header..."
+        Commentator "And hes done it!!!"
+        Commentator "The header is perfectly placed, beating the goalkeeper and giving Haddonfield United a goal."
+        $ score_for_1 += 1
+        jump match_day_1_play_s_5
+    if shooting < 90:
+        show Commentator at left
+        Commentator "[povname] goes for the header..."
+        Commentator "Oh Dear!!!"
+        Commentator "The header is mistimed, and the ball goes over the bar."
+        jump match_day_1_play_s_5
+     
+label match_day_1_play_s_control_ball:
+    if physical >= 50:
+        show Commentator at left
+        Commentator "[povname] controls the ball with his chest and tries to shoot..."
+        Commentator "And look at that!!!"
+        Commentator "He controls the ball beautifully and smashes it into the net, securing the goal."
+        $ score_for_1 += 1
+        jump match_day_1_play_s_5
+    if physical < 50:
+        show Commentator at left
+        Commentator "[povname] controls the ball with his chest and tries to shoot..."
+        Commentator "And oh no!!!"
+        Commentator "The control is poor, and a defender clears the ball before he can shoot."
+        jump match_day_1_play_s_5
+
+label match_day_1_play_s_5:
+    show Commentator at left
+    with dissolve
+    Commentator "With only seconds remaining, Haddonfield United win a corner."
+    Commentator "[povname] positions himself near the penalty spot, ready for one last chance."
+    hide Commentator
+    with dissolve
+menu:
+    "Call for ball":
+                jump match_day_1_play_s_call_for_ball
+    "Late run to post":
+                jump match_day_1_play_s_run_post
+
+label match_day_1_play_s_call_for_ball:
+    if shooting >= 85:
+        show Commentator at left
+        Commentator "[povname] calls for the ball to be crossed to him."
+        Commentator "And can you believe it!!!"
+        Commentator "He leaps above the defenders and heads the ball into the goal, scoring in dramatic fashion. Who would've seen this coming from [povname]?"
+        $ score_for_1 += 1
+        jump match_day_1_play_s_final_whistle
+    if shooting < 85:
+        show Commentator at left
+        Commentator "[povname] calls for the ball to be crossed to him."
+        Commentator "Oh no no no!!!"
+        Commentator "The cross is too high, and the ball goes out for a goal kick."
+        jump match_day_1_play_s_final_whistle
+
+label match_day_1_play_s_run_post:
+    if pace >= 75:
+        show Commentator at left
+        Commentator "[povname] makes a late run to the near post..."
+        Commentator "And would you look at that!!!"
+        Commentator "The ball is perfectly delivered to the near post, and [povname] flicks it into the net for a goal."
+        $ score_for_1 += 1
+        jump match_day_1_play_s_final_whistle
+    if pace < 75:
+        show Commentator at left 
+        Commentator "[povname] makes a late run to the near post..."
+        Commentator "That is not good!!!"
+        Commentator "The delivery is intercepted by the goalkeeper, and the chance is lost."
+        jump match_day_1_play_s_final_whistle
+        
+label match_day_1_play_s_final_whistle:
+    show Commentator at left
+    Commentator "The game ends with a thrilling conclusion,"
+    Commentator "the scorline is Haddonfield [score_for_1]-[score_against_1] Newcastle United."
+
+label injured_end:
+
+label failed_end:
 
 return
