@@ -62,7 +62,7 @@ label start:
     scene Neutral_Background
     show Commentator at left
     with dissolve
-    Commentator "And that is the 22nd game of the season, and that is only 5 points for Haddonfield United."
+    Commentator "And that is the 22nd game of the season, and that is only 19 points for Haddonfield United."
     Commentator "The Final Score is 4-0 for Haddonfield United and that is their first good result of the 22 matches, which makes you wonder... "
     Commentator "Where will Haddonfield end up if they have consistent scorelines like that?"
     hide Commentator
@@ -101,7 +101,7 @@ label press_conference_signing_1:
     $ press_perception = 50
     show Narrator at left
     with dissolve
-    Narrator "You have been signed to a team that is currently in the papers for their bad result on the weekend."
+    Narrator "You have been signed to a team that is currently in the papers for their bad results throughout the season."
     Narrator "You will be asked by the press to give a statement on your teams performance and how you will help."
     hide Narrator
     scene Press_conference_background
@@ -788,7 +788,6 @@ menu:
 
 # There is a list of teams that have a set of points for the amount of points they had at that point in the Premier League.
 
-
 label match_day_1:
     $ manchester_city = 46
     $ arsenal = 46
@@ -1055,11 +1054,54 @@ label match_day_1_play_s_run_post:
         Commentator "The delivery is intercepted by the goalkeeper, and the chance is lost."
         jump match_day_1_play_s_final_whistle
         
-label match_day_1_play_s_final_whistle:
-    show Commentator at left
-    Commentator "The game ends with a thrilling conclusion,"
-    Commentator "the scorline is Haddonfield [score_for_1]-[score_against_1] Newcastle United."
+# After having a result from this match it will change the points for the main team
+# I also went onto the real premier league matches and had a change in points depending on their real result.
 
+label match_day_1_play_s_final_whistle:
+    $ everton += 1
+    $ tottenham += 1
+    $ brighton += 3
+    $ burnley += 1
+    $ fulham += 1
+    $ aston_villa += 3
+    $ bournemouth += 1
+    $ nottm_forest += 1
+    $ manchester_united += 3
+    $ wolves += 3
+    $ arsenal += 3
+    $ manchester_city += 3
+    if score_for_1 > score_against_1:
+        $ haddonfield_united += 3
+    if score_for_1 == score_against_1:
+        $ haddonfield_united += 1
+        $ newcastle += 1
+    if score_for_1 < score_against_1:
+        $ newcastle += 3
+        show Commentator at left
+        Commentator "The game ends with a thrilling conclusion,"
+        Commentator "the scorline is Haddonfield [score_for_1]-[score_against_1] Newcastle United."
+        Commentator "Now we will come down to the post match interviews with some of the players."
+        jump post_match_day_1_interview
+
+label post_match_day_1_interview:
+    show Commentator at left
+    with dissolve
+    Commentator "The Captain is now being interviewed after the game."
+    Commentator "Let's see what they have to say."
+    hide Commentator
+    with dissolve
+    show The_Gafa at left
+    with dissolve
+    The_Gafa "While the Captain is getting interviewed I want to know how you're doing"
+    The_Gafa "Great game out there today, [povname]."
+    The_Gafa "You made a real impact on the pitch."
+    The_Gafa "How are you feeling after that performance?"
+    hide The_Gafa
+    with dissolve
+menu:
+
+
+    
 label injured_end:
 
 label failed_end:
