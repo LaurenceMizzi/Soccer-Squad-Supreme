@@ -1101,6 +1101,41 @@ label post_match_day_1_interview:
 menu:
 
 
+label match_day_2_start:
+    $ score_for_2 = 0
+    $ score_against_2 = 3
+    show Narrator at left
+    with dissolve 
+    Narrator "In reality Sheffield won this game 3-1 so you'll have options to make this scoreline better then the realife life result."
+    hide Narrator
+    with dissolve
+    show Commentator at left
+    with dissolve
+    Commentator "Here we are at Haddonfield park for Haddonfield United v Sheffield United"
+    Commentator "The referee blows the whistle, and the game begins."
+    hide Commentator
+    with dissolve
+    jump match_day_2_play_1
+
+label match_day_2_play_1:
+    show Commentator at left
+    Commentator "Haddonfield United's new signing [povname] starts in his position as the central forward, ready to lead the attack."
+    Commentator "We are going into the 8th minute and..."
+    Commentator "[povname] finds himself on the edge of the penalty box with the ball, facing a lone defender."
+    hide Commentator
+    with dissolve
+menu:
+    "Attempt dribble":
+                    jump match_day_2_play_attempt_dribble
+    "Opt for pass":
+                jump match_day_2_play_opt_for_pass
+
+label match_day_2_play_attempt_dribble:
+    if dribbling >= 75:
+        show Commentator at left
+        Commentator ""
+
+label match_day_2_play_opt_for_pass:
     
 label injured_end:
 
