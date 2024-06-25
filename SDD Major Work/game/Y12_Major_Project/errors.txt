@@ -2,9 +2,13 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 942: reached end of line when expecting ':'.
-    if shooting >= 85
-                     ^
+File "game/script.rpy", line 799: if statement expects a non-empty block.
+    if $ match_1 == False:
+                          ^
+
+File "game/script.rpy", line 804: if statement expects a non-empty block.
+    if $ match_1 == False:
+                          ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Tue Jun 11 12:13:45 2024
+Tue Jun 25 19:47:27 2024

@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Y12_Major_Project")
+define config.name = _("Soccer Squad Supreme")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set

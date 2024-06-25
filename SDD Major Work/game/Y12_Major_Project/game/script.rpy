@@ -514,6 +514,22 @@ label check_up_first_week_end:
 # Depending on the choice the player makes, their stats will change
 
 label training_session_1_1:
+    $ match_1 = False
+    $ match_2 = False
+    $ match_3 = False
+    $ match_4 = False
+    $ match_5 = False
+    $ match_6 = False
+    $ match_7 = False
+    $ match_8 = False
+    $ match_9 = False
+    $ match_10 = False
+    $ match_11 = False
+    $ match_12 = False
+    $ match_13 = False
+    $ match_14 = False
+    $ match_15 = False
+    $ match_16 = False
     $ stamina = 100
     show Narrator at left
     with dissolve
@@ -780,11 +796,13 @@ menu:
     "30 minutes":
             $ physical += 10
             $ stamina -= 5
-            jump match_day_1
+            if $ match_1 == False:
+                jump match_day_1
     "1 hour":
             $ physical += 15
             $ stamina -= 10
-            jump match_day_1
+            if $ match_1 == False:
+                jump match_day_1
 
 # There is a list of teams that have a set of points for the amount of points they had at that point in the Premier League.
 
@@ -1052,6 +1070,7 @@ label match_day_1_play_s_run_post:
         Commentator "[povname] makes a late run to the near post..."
         Commentator "That is not good!!!"
         Commentator "The delivery is intercepted by the goalkeeper, and the chance is lost."
+        $ match_1 = True
         jump match_day_1_play_s_final_whistle
         
 # After having a result from this match it will change the points for the main team
@@ -1095,50 +1114,14 @@ label post_match_day_1_interview:
     The_Gafa "While the Captain is getting interviewed I want to know how you're doing"
     The_Gafa "Great game out there today, [povname]."
     The_Gafa "You made a real impact on the pitch."
-    The_Gafa "How are you feeling after that performance?"
+    The_Gafa "Take a good rest, you will need it."
     hide The_Gafa
     with dissolve
-menu:
+    if $ match_1 = True: 
+        jump label end_screen
 
-
-label match_day_2_start:
-    $ score_for_2 = 0
-    $ score_against_2 = 3
-    show Narrator at left
-    with dissolve 
-    Narrator "In reality Sheffield won this game 3-1 so you'll have options to make this scoreline better then the realife life result."
-    hide Narrator
-    with dissolve
-    show Commentator at left
-    with dissolve
-    Commentator "Here we are at Haddonfield park for Haddonfield United v Sheffield United"
-    Commentator "The referee blows the whistle, and the game begins."
-    hide Commentator
-    with dissolve
-    jump match_day_2_play_1
-
-label match_day_2_play_1:
-    show Commentator at left
-    Commentator "Haddonfield United's new signing [povname] starts in his position as the central forward, ready to lead the attack."
-    Commentator "We are going into the 8th minute and..."
-    Commentator "[povname] finds himself on the edge of the penalty box with the ball, facing a lone defender."
-    hide Commentator
-    with dissolve
-menu:
-    "Attempt dribble":
-                    jump match_day_2_play_attempt_dribble
-    "Opt for pass":
-                jump match_day_2_play_opt_for_pass
-
-label match_day_2_play_attempt_dribble:
-    if dribbling >= 75:
-        show Commentator at left
-        Commentator ""
-
-label match_day_2_play_opt_for_pass:
-    
-label injured_end:
-
-label failed_end:
-
+label end_screen:
+    Narrator "This is the end of the demo of the game."
+    Narrator "If you want the developer to continue with this project, please let them know."
+    Narrator "Thank you for playing the demo."
 return
