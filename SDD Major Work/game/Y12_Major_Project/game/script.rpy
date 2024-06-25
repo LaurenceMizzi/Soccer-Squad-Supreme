@@ -700,6 +700,8 @@ label meet_teammates_1_2:
     with dissolve
     jump training_session_1_2
 
+# The player is then given a choice of what they want to do next in their second training session
+
 label training_session_1_2:
     show Narrator at left
     with dissolve
@@ -854,6 +856,8 @@ label match_day_1_start:
     jump match_day_1_play_s_1
 
 # Striker scenario 13th minute
+# The player is given a choice of what they want to do next
+# Depending on the choice the player makes, the outcome of the match will change
 
 label match_day_1_play_s_1:
         show Commentator at left
@@ -1101,6 +1105,8 @@ label match_day_1_play_s_final_whistle:
         Commentator "the scorline is Haddonfield [score_for_1]-[score_against_1] Newcastle United."
         Commentator "Now we will come down to the post match interviews with some of the players."
         jump post_match_day_1_interview
+
+# This is the post match day interview where the player will end the demo
 
 label post_match_day_1_interview:
     show Commentator at left
