@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 799: if statement expects a non-empty block.
-    if $ match_1 == False:
-                          ^
-
-File "game/script.rpy", line 804: if statement expects a non-empty block.
-    if $ match_1 == False:
-                          ^
+File "game/script.rpy", line 1127: end of line expected.
+    jump label end_screen:
+               ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Tue Jun 25 19:47:27 2024
+Tue Jun 25 20:42:23 2024

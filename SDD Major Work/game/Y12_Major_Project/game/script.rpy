@@ -1124,7 +1124,7 @@ label post_match_day_1_interview:
     hide The_Gafa
     with dissolve
     if $ match_1 = True: 
-        jump label end_screen
+        jump end_screen:
 
 label end_screen:
     Narrator "This is the end of the demo of the game."
