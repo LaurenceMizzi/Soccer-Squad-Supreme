@@ -1,15 +1,15 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 941, in script
-    if position = Striker:
-SyntaxError: invalid syntax (game/script.rpy, line 941)
+  File "game/script.rpy", line 1094, in script
+    if $ match_1 == True:
+SyntaxError: invalid syntax (game/script.rpy, line 1094)
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 941, in script
-    if position = Striker:
+  File "game/script.rpy", line 1094, in script
+    if $ match_1 == True:
   File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\ast.py", line 1842, in execute
     if renpy.python.py_eval(condition):
   File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\python.py", line 1207, in py_eval
@@ -20,9 +20,9 @@ Full traceback:
     raise orig_e
   File "C:\Users\Mrspi\OneDrive\Documents\12SDD Major Project\major-work-12sdd\renpy-8.2.1-sdk\renpy\python.py", line 1073, in py_compile
     tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, 1)
-SyntaxError: invalid syntax (game/script.rpy, line 941)
+SyntaxError: invalid syntax (game/script.rpy, line 1094)
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.1.24030407
-Y12_Major_Project 1.0
-Mon Jun  3 09:22:10 2024
+Soccer Squad Supreme 1.0
+Wed Jun 26 11:35:38 2024

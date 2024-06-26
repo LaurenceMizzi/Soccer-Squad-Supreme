@@ -19,6 +19,14 @@ define Doc = Character('Physio', color='#FFFFFF')
 
 # Declare images used by this game. The zoom argument scales the image.
 
+image Getting_Ready:
+    "bg getting_ready.png"
+    zoom 1.45
+
+image Taking_Header:
+    "bg taking_header.png"
+    zoom 1.45
+
 image Locker_Room:
     "bg locker_room.png"
     zoom 1.45
@@ -468,50 +476,8 @@ label second_day:
     show Narrator at left
     with dissolve
     Narrator "This is your second day."
-    Narrator "In order for you to go any further, you're gonna have to head over to the medical wing for a check-up."
-    Narrator "The doctors will ensure everything is in top shape."
-    Narrator "Then, you'll complete some fitness assessments."
-    Narrator "This will help you understand your physical condition and tailor your training accordingly."
-    hide Narrator
-    with dissolve
-    jump check_up_first_week
-
-label check_up_first_week:
-    Doc "Welcome to the medical wing."
-    Doc "I'm the team's physio, and I'll be conducting your check-up today."
-    Doc "Let's start with a few basic checks to ensure everything is in top shape."
-    jump check_up_first_week_progress
-
-label check_up_first_week_progress:
-    Doc "Now that we've covered the basics, we'll move on to the fitness assessments."
-    Doc "These will help us understand your physical condition better and how your stats are looking."
-    Doc "We'll have you do a series of tasks including a treadmill run, some strength tests, and flexibility measurements. Ready?"
-menu:
-    "Yes I am":
-            jump check_up_first_week_progress_treadmill
-
-label check_up_first_week_progress_treadmill:
-    Doc "Excellent. We'll begin with the treadmill."
-    Doc "I need you to run at a steady pace. Don't push too hard..." 
-    Doc "we want to see your natural speed level."
-    jump check_up_first_week_progress_strength
-
-label check_up_first_week_progress_strength:
-    Doc "Now let's move on to the strength tests."
-    Doc "We'll measure your upper and lower body strength with some weight exercises."
-    jump check_up_first_week_progress_agility
-
-label check_up_first_week_progress_agility:
-    Doc "The last part of the assessment is checking your agility."
-    Doc "We'll do a few simple stretches to see your range of motion."
-
-label check_up_first_week_end:
-    Doc "Here are your stats"
-# Need to display stats here so player knows what their stats are.
-
-# The player is then given a choice of what they want to do next
-# They are being told what choice they have of training
-# Depending on the choice the player makes, their stats will change
+    Narrator "In order for you to go any further, you're gonna have to head over to the Training drills to enhance your skills."
+    jump training_session_1_1
 
 label training_session_1_1:
     $ match_1 = False
@@ -873,6 +839,7 @@ menu:
                 jump match_day_1_play_s_dribble_past
 
 label match_day_1_play_s_quick_shot:
+    scene Getting_Ready
     if shooting >= 80:
         show Commentator at left
         Commentator "[povname] takes a quick shot on goal."
@@ -888,6 +855,7 @@ label match_day_1_play_s_quick_shot:
         jump match_day_1_play_s_2
 
 label match_day_1_play_s_dribble_past:
+    scene Getting_Ready
     if dribbling >= 60:
         show Commentator at left
         Commentator "[povname] tries to dribble past the keeper."
@@ -903,6 +871,7 @@ label match_day_1_play_s_dribble_past:
         jump match_day_1_play_s_2
 
 label match_day_1_play_s_2:
+    scene Neutral_Background
     show Commentator at left
     with dissolve
     Commentator "It is the 28th minute."
@@ -917,6 +886,7 @@ menu:
             jump match_day_1_play_s_make_pass
 
 label match_day_1_play_s_direct_shot:
+    scene Getting_Ready
     if shooting >= 85:
         show Commentator at left
         Commentator "[povname] attempts a direct shot on goal"
@@ -932,6 +902,7 @@ label match_day_1_play_s_direct_shot:
         jump match_day_1_play_s_3
 
 label match_day_1_play_s_make_pass:
+    scene Getting_Ready
     if passing >= 50:
         show Commentator at left
         Commentator "[povname] goes to make the pass"
@@ -947,6 +918,7 @@ label match_day_1_play_s_make_pass:
         jump match_day_1_play_s_3
 
 label match_day_1_play_s_3:
+    scene Neutral_Background
     show Commentator at left
     with dissolve
     Commentator "It is the 54th minute"
@@ -961,6 +933,7 @@ menu:
                             jump match_day_1_play_s_lay_off
 
 label match_day_1_play_s_freekick:
+    scene Getting_Ready
     if shooting >= 90:
         show Commentator at left
         Commentator "[povname] takes the run-up and..."
@@ -976,6 +949,7 @@ label match_day_1_play_s_freekick:
         jump match_day_1_play_s_4
 
 label match_day_1_play_s_lay_off:
+    scene Getting_Ready
     if passing >= 50:
         show Commentator at left
         Commentator "[povname] makes a quick short pass and..."
@@ -991,6 +965,7 @@ label match_day_1_play_s_lay_off:
         jump match_day_1_play_s_4
 
 label match_day_1_play_s_4:
+    scene Neutral_Background
     show Commentator at left
     with dissolve
     Commentator "It is the 79th minute"
@@ -1004,6 +979,7 @@ menu:
                 jump match_day_1_play_s_control_ball
 
 label match_day_1_play_s_make_header:
+    scene Taking_Header 
     if shooting >= 90:
         show Commentator at left
         Commentator "[povname] goes for the header..."
@@ -1019,6 +995,7 @@ label match_day_1_play_s_make_header:
         jump match_day_1_play_s_5
      
 label match_day_1_play_s_control_ball:
+    scene Getting_Ready
     if physical >= 50:
         show Commentator at left
         Commentator "[povname] controls the ball with his chest and tries to shoot..."
@@ -1034,6 +1011,7 @@ label match_day_1_play_s_control_ball:
         jump match_day_1_play_s_5
 
 label match_day_1_play_s_5:
+    scene Neutral_Background
     show Commentator at left
     with dissolve
     Commentator "With only seconds remaining, Haddonfield United win a corner."
@@ -1047,6 +1025,7 @@ menu:
                 jump match_day_1_play_s_run_post
 
 label match_day_1_play_s_call_for_ball:
+    scene Taking_Header 
     if shooting >= 85:
         show Commentator at left
         Commentator "[povname] calls for the ball to be crossed to him."
@@ -1062,6 +1041,7 @@ label match_day_1_play_s_call_for_ball:
         jump match_day_1_play_s_final_whistle
 
 label match_day_1_play_s_run_post:
+    scene Getting_Ready
     if pace >= 75:
         show Commentator at left
         Commentator "[povname] makes a late run to the near post..."
@@ -1081,10 +1061,11 @@ label match_day_1_play_s_run_post:
 # I also went onto the real premier league matches and had a change in points depending on their real result.
 
 label match_day_1_play_s_final_whistle:
+    scene Neutral_Background
     $ everton += 1
     $ tottenham += 1
     $ brighton += 3
-    $ burnley += 1
+    $ burnly += 1
     $ fulham += 1
     $ aston_villa += 3
     $ bournemouth += 1
@@ -1117,17 +1098,23 @@ label post_match_day_1_interview:
     with dissolve
     show The_Gafa at left
     with dissolve
-    The_Gafa "While the Captain is getting interviewed I want to know how you're doing"
-    The_Gafa "Great game out there today, [povname]."
-    The_Gafa "You made a real impact on the pitch."
-    The_Gafa "Take a good rest, you will need it."
+    Manager "While the Captain is getting interviewed I want to know how you're doing"
+    Manager "Great game out there today, [povname]."
+    Manager "You made a real impact on the pitch."
+    Manager "Take a good rest, you will need it."
     hide The_Gafa
     with dissolve
-    if $ match_1 = True: 
-        jump end_screen:
+    jump end_screen
 
 label end_screen:
+    scene Neutral_Background
+    show Narrator at left
     Narrator "This is the end of the demo of the game."
     Narrator "If you want the developer to continue with this project, please let them know."
+    Narrator "Did you also see the developers name through the game???"
+    Narrator "You had to really focus on the dialogue"
+    Narrator "Anyways..."
     Narrator "Thank you for playing the demo."
+    Narrator "Hope to see you soon."
+
 return
